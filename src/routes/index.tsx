@@ -365,15 +365,16 @@ function HomePage() {
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { img: teamRoney, name: "Roney Saad", role: "Grundare &amp; kock" },
-              { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef &amp; medägare" },
+              { img: teamRoney, name: "Roney Saad", role: "Grundare &amp; kock", alt: "Porträtt av Roney Saad, grundare och kock" },
+              { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef &amp; medägare", alt: "Porträtt av Mariette Lindberg, barchef och medägare" },
+              { img: gFood4.url, name: "Lyxat & lyxpizza", role: "Du beställer — vi serverar", alt: "Lyxig pizza från Rävens Bistro" },
             ].map((p) => (
               <figure key={p.name} className="group">
                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[color-mix(in_oklab,var(--foreground)_8%,var(--background))]">
                   {p.img ? (
                     <img
                       src={p.img}
-                      alt={p.name}
+                      alt={p.alt}
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
                     />
                   ) : (
