@@ -88,8 +88,8 @@ function CateringPage() {
               </div>
             </div>
             <div className="lg:col-span-5">
-              <div className="aspect-[4/5] overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-30px_rgba(27,20,17,0.35)]">
-                <img src={cateringAsset.url} alt="Catering från Rävens Bistro — uppdukat bord" loading="lazy" className="h-full w-full object-cover" />
+              <div className="aspect-[3/5] lg:aspect-auto lg:h-[640px] xl:h-[720px] overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-30px_rgba(27,20,17,0.35)]">
+                <img src={cateringAsset.url} alt="Catering från Rävens Bistro — uppdukat bord" loading="lazy" className="h-full w-full object-cover object-center" />
               </div>
             </div>
           </div>
