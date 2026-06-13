@@ -18,16 +18,16 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-foreground/10 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt={RAVEN.name} className="h-11 w-auto" />
+        <Link to="/" aria-label={`${RAVEN.name} — hem`} className="flex items-center gap-2">
+          <img src={logo} alt="" className="h-11 w-auto" />
           <span className="sr-only">{RAVEN.name}</span>
         </Link>
-        <nav className="hidden lg:flex items-center gap-9">
+        <nav aria-label="Primär navigation" className="hidden lg:flex items-center gap-9">
           {navItems.map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              className="text-[0.8rem] uppercase tracking-[0.18em] font-medium text-foreground/75 hover:text-primary transition-colors"
+              className="text-[0.85rem] uppercase tracking-[0.18em] font-semibold text-foreground hover:text-primary transition-colors min-h-11 inline-flex items-center"
               activeProps={{ className: "text-primary" }}
               activeOptions={{ exact: n.to === "/" }}
             >
@@ -36,28 +36,31 @@ export function Header() {
           ))}
           <a
             href={RAVEN.phone.href}
-            className="rounded-full bg-foreground px-5 py-2.5 text-[0.75rem] tracking-[0.12em] font-medium text-background hover:bg-primary transition-colors"
+            aria-label={`Ring ${RAVEN.name} — ${RAVEN.phone.label}`}
+            className="rounded-full bg-foreground px-5 py-3 text-[0.85rem] tracking-[0.08em] font-semibold text-background hover:bg-primary transition-colors min-h-11 inline-flex items-center"
           >
             {RAVEN.phone.label}
           </a>
         </nav>
         <button
-          aria-label="Öppna meny"
-          className="lg:hidden p-2 text-foreground"
+          aria-label={open ? "Stäng meny" : "Öppna meny"}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          className="lg:hidden p-3 text-foreground min-h-11 min-w-11"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
       {open && (
-        <nav className="lg:hidden border-t border-border bg-background">
+        <nav id="mobile-nav" aria-label="Mobilmeny" className="lg:hidden border-t border-border bg-background">
           <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3">
             {navItems.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2 text-base text-foreground hover:bg-secondary"
+                className="rounded-md px-3 py-3 text-base font-medium text-foreground hover:bg-secondary min-h-11 inline-flex items-center"
                 activeProps={{ className: "bg-secondary text-primary" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
@@ -66,7 +69,7 @@ export function Header() {
             ))}
             <a
               href={RAVEN.phone.href}
-              className="mt-2 rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
+              className="mt-2 rounded-full bg-primary px-5 py-3 text-center text-base font-semibold text-primary-foreground min-h-11"
             >
               Ring {RAVEN.phone.label}
             </a>

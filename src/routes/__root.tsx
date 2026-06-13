@@ -135,6 +135,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
+      <a href="#content" className="skip-link">Hoppa till innehåll</a>
       <Outlet />
     </QueryClientProvider>
   );
