@@ -3,7 +3,6 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import heroPizza from "@/assets/scraped/hero-pizza.jpg";
 import hero2 from "@/assets/scraped/hero-2.jpg";
-import roney from "@/assets/scraped/roney.png";
 import pizzaIcon from "@/assets/scraped/pizza-icon.png";
 import alacarteIcon from "@/assets/scraped/alacarte-icon.png";
 import kebabIcon from "@/assets/scraped/kebab-icon.png";
@@ -11,8 +10,8 @@ import swishVanlig from "@/assets/scraped/swish-vanlig.png";
 import swishEvent from "@/assets/scraped/swish-event.png";
 import teamRoney from "@/assets/scraped/team-roney.jpg";
 import teamGabriel from "@/assets/scraped/team-gabriel.jpg";
-import { MotifBackdrop } from "@/components/site/Motifs";
-import { StatsRow } from "@/components/site/StatsRow";
+import { RAVEN } from "@/lib/locations";
+import { ArrowUpRight, Phone, MapPin, Clock } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,145 +37,241 @@ const lunchMenu = [
 
 function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Header />
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative overflow-hidden bg-foreground text-background">
-          <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:py-24 lg:grid-cols-2">
-            <div>
-              <p className="font-script text-4xl text-primary">välkommen till vårt mysiga ställe i Väse</p>
-              <h1 className="mt-2 text-5xl md:text-7xl font-extrabold leading-[0.95]">
-                Rävens <span className="text-primary">Bistro</span>
-              </h1>
-              <p className="mt-6 max-w-xl text-lg opacity-85">
-                Värmlands bästa matupplevelse, precis utanför Karlstad — där genuina smaker möter en vänlig atmosfär.
-              </p>
-              <p className="mt-3 text-sm opacity-70">
-                Mån–tor 11–21 · Fre–lör 11–22 (till 01 vid evenemang) · Sön 11–21.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#boka" className="rounded-full bg-primary px-7 py-3 text-base font-semibold text-primary-foreground hover:opacity-90">
-                  Boka bord
-                </a>
-                <Link to="/meny" className="rounded-full border border-white/30 px-7 py-3 text-base font-semibold text-background hover:bg-white/10">
-                  Se menyn
-                </Link>
+        {/* ───────── HERO ───────── */}
+        <section className="relative overflow-hidden">
+          {/* warm wash backdrop */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,color-mix(in_oklab,var(--honey)_25%,transparent),transparent_60%)]" />
+          <div className="relative mx-auto max-w-7xl px-4 pt-10 md:pt-16 pb-20">
+            {/* Eyebrow row */}
+            <div className="flex flex-wrap items-center justify-between gap-4 text-[0.7rem] uppercase tracking-[0.28em] text-foreground/60">
+              <span className="inline-flex items-center gap-2">
+                <span className="h-px w-8 bg-foreground/30" /> Etablerad {RAVEN.since} · Väse
+              </span>
+              <span className="hidden md:inline-flex items-center gap-2">
+                Nr 01 — Säsongen {new Date().getFullYear()}
+              </span>
+            </div>
+
+            {/* Headline + image, magazine-style */}
+            <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-14 items-end">
+              <div className="lg:col-span-7">
+                <p className="font-script text-5xl md:text-6xl text-primary leading-none">en värmländsk bistro</p>
+                <h1 className="mt-3 font-heading text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.92] tracking-[-0.035em] text-balance">
+                  Rävens
+                  <br />
+                  <span className="italic text-primary" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1, "opsz" 144' }}>
+                    Bistro
+                  </span>
+                </h1>
+                <p className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-pretty text-foreground/80">
+                  Pizza ur vedugnen, husman med själ och à la carte med säsongens bästa —
+                  serverat i Väse, en kort biltur från Karlstad.
+                </p>
+                <div className="mt-9 flex flex-wrap items-center gap-4">
+                  <a
+                    href="#boka"
+                    className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background hover:bg-primary transition-colors"
+                  >
+                    Boka bord
+                    <ArrowUpRight size={16} className="transition-transform group-hover:rotate-45" />
+                  </a>
+                  <Link
+                    to="/meny"
+                    className="link-underline text-sm font-medium tracking-wide text-foreground/80 hover:text-foreground"
+                  >
+                    Läs hela menyn
+                  </Link>
+                </div>
+              </div>
+
+              {/* Stacked image collage */}
+              <div className="lg:col-span-5 relative">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-foreground/5 shadow-[0_30px_60px_-30px_rgba(27,20,17,0.35)]">
+                  <img src={heroPizza} alt="Vedugnsbakad pizza från Rävens Bistro" className="h-full w-full object-cover" />
+                </div>
+                <div className="absolute -bottom-10 -left-10 hidden md:block w-44 aspect-[4/5] overflow-hidden rounded-[1.5rem] ring-8 ring-background">
+                  <img src={hero2} alt="Stämning i bistron" className="h-full w-full object-cover" />
+                </div>
+                <div className="absolute -top-6 -right-4 rounded-full bg-[var(--color-honey)] text-foreground px-5 py-3 text-[0.65rem] uppercase tracking-[0.25em] font-medium shadow-md rotate-3">
+                  Sedan {RAVEN.since}
+                </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <img src={heroPizza} alt="Pizza från Rävens Bistro" className="aspect-[4/5] w-full rounded-2xl object-cover" />
-              <img src={hero2} alt="Stämning i bistron" className="mt-10 aspect-[4/5] w-full rounded-2xl object-cover" />
-            </div>
-          </div>
-        </section>
 
-        {/* About teaser */}
-        <section className="relative mx-auto max-w-7xl px-4 py-20 grid gap-12 lg:grid-cols-2 items-center">
-          <MotifBackdrop variant="fox" />
-          <div className="relative">
-            <p className="font-script text-3xl text-primary">Sedan 2018</p>
-            <h2 className="mt-1 text-4xl md:text-5xl font-extrabold">Vi finns vid alla tillfällen.</h2>
-            <p className="mt-4 text-lg text-muted-foreground font-semibold">Bra mat & goda vibbar</p>
-            <p className="mt-4 leading-relaxed">
-              En kulinarisk pärla belägen i det idylliska Väse, en kort resa från Karlstad i hjärtat av Värmland.
-              I vår bistro, omgiven av naturens lugn och skönhet, strävar vi efter att erbjuda en minnesvärd
-              matupplevelse där råvaror och säsongens bästa smaker står i centrum.
-            </p>
-            <ul className="mt-6 space-y-2 text-base">
-              <li>• Vårt språk är mat — och genom det berättar vi historier.</li>
-              <li>• Varje rätt är ett litet mästerverk.</li>
-              <li>• Välkommen till en smakfull resa.</li>
-            </ul>
-            <Link to="/om-oss" className="mt-8 inline-block rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background hover:opacity-90">
-              Läs mer om oss
-            </Link>
-          </div>
-          <div className="relative flex justify-center">
-            <div className="relative inline-block">
-              <p className="font-script text-7xl md:text-8xl text-primary leading-none drop-shadow-sm">
-                Roney Saad
-              </p>
-              <p className="mt-2 text-center text-xs font-semibold tracking-[0.3em] uppercase text-foreground/70">
-                Grundare · Kock
-              </p>
-              {/* Den scrapade signaturen som diskret vattenstämpel bakom namnet */}
-              <img
-                src={roney}
-                alt=""
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 m-auto w-72 opacity-30 mix-blend-multiply"
-              />
-            </div>
-          </div>
-
-        </section>
-
-        {/* Menu cards */}
-        <section className="bg-background border-y border-border">
-          <div className="mx-auto max-w-7xl px-4 py-20">
-            <div className="text-center">
-              <p className="font-script text-3xl text-primary">Vår meny</p>
-              <h2 className="mt-1 text-4xl md:text-5xl font-extrabold">Pizza, à la carte eller kebab & pita?</h2>
-            </div>
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {/* Info bar */}
+            <div className="mt-20 grid gap-6 md:grid-cols-3 hairline pt-8">
               {[
-                { icon: pizzaIcon, title: "Pizza Meny", to: "/meny" },
-                { icon: alacarteIcon, title: "À la carte Meny", to: "/meny" },
-                { icon: kebabIcon, title: "Kebab & Pita Meny", to: "/meny" },
+                { Icon: Clock, label: "Öppet idag", value: RAVEN.hours.split(" · ")[0] },
+                { Icon: MapPin, label: "Adress", value: RAVEN.address },
+                { Icon: Phone, label: "Boka direkt", value: RAVEN.phone.label, href: RAVEN.phone.href },
+              ].map(({ Icon, label, value, href }) => {
+                const inner = (
+                  <div className="flex items-start gap-4">
+                    <Icon size={20} className="mt-1 text-primary shrink-0" />
+                    <div className="min-w-0">
+                      <p className="text-[0.65rem] uppercase tracking-[0.25em] text-foreground/50">{label}</p>
+                      <p className="mt-1 font-heading text-lg leading-snug">{value}</p>
+                    </div>
+                  </div>
+                );
+                return href ? (
+                  <a key={label} href={href} className="block group">{inner}</a>
+                ) : (
+                  <div key={label}>{inner}</div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ───────── ABOUT — editorial pull-quote ───────── */}
+        <section className="bg-foreground text-background">
+          <div className="mx-auto max-w-6xl px-4 py-24 md:py-32 grid gap-12 lg:grid-cols-12 items-center">
+            <div className="lg:col-span-7">
+              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-background/50">Kapitel I — Familjen</p>
+              <blockquote className="mt-6 font-heading text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] text-balance">
+                <span className="text-primary">"</span>
+                Vi vill att du går härifrån med samma känsla som efter en
+                <em className="italic"> riktigt bra middag hemma hos någon du tycker om.</em>
+                <span className="text-primary">"</span>
+              </blockquote>
+              <p className="mt-8 font-script text-4xl text-[var(--color-honey)]">Roney &amp; Mariette</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-background/60 mt-1">Värdpar · Rävens Bistro</p>
+              <Link
+                to="/om-oss"
+                className="mt-10 link-underline inline-block text-sm font-medium tracking-wide text-background/80 hover:text-background"
+              >
+                Läs hela vår historia
+              </Link>
+            </div>
+            <div className="lg:col-span-5">
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { value: "539+", label: "Nöjda gäster 2023" },
+                  { value: "4 300", label: "Tillagade måltider" },
+                  { value: "4,8", label: "av 5 på Google" },
+                  { value: "2018", label: "Året vi öppnade" },
+                ].map((s) => (
+                  <div key={s.label} className="rounded-2xl border border-background/15 p-6">
+                    <p className="font-heading text-4xl text-[var(--color-honey)]">{s.value}</p>
+                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-background/60">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ───────── MENU — three column editorial cards ───────── */}
+        <section className="relative">
+          <div className="mx-auto max-w-7xl px-4 py-24">
+            <div className="grid gap-6 lg:grid-cols-12 items-end mb-14">
+              <div className="lg:col-span-7">
+                <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Kapitel II — Köket</p>
+                <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
+                  Tre vägar in i menyn.
+                </h2>
+              </div>
+              <p className="lg:col-span-5 text-base text-foreground/70 max-w-md">
+                Pizza ur vedugnen, klassisk husman och kebab/pita från eget recept — välj
+                ditt humör och bläddra vidare till hela menyn.
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {[
+                { icon: pizzaIcon, num: "01", title: "Pizza", desc: "Inbakade, klassiker och våra egna favoriter — ur vedugnen." },
+                { icon: alacarteIcon, num: "02", title: "À la carte", desc: "Husman med själ, säsongens råvaror och välkomna klassiker." },
+                { icon: kebabIcon, num: "03", title: "Kebab & pita", desc: "Egen marinad, generösa portioner — i tallrik eller pita." },
               ].map((c) => (
                 <Link
                   key={c.title}
-                  to={c.to}
-                  className="group rounded-2xl border border-border bg-card p-8 text-center transition hover:-translate-y-1 hover:border-primary hover:shadow-lg"
+                  to="/meny"
+                  className="group relative rounded-[1.75rem] border border-foreground/10 bg-card p-8 transition hover:border-primary/40 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(27,20,17,0.25)]"
                 >
-                  <img src={c.icon} alt="" className="mx-auto h-20 w-auto" />
-                  <h3 className="mt-4 text-2xl font-bold">{c.title}</h3>
-                  <span className="mt-4 inline-block text-sm font-semibold text-primary group-hover:underline">
-                    Gå till meny →
-                  </span>
+                  <div className="flex items-start justify-between">
+                    <span className="font-heading text-sm tracking-[0.2em] text-foreground/40">{c.num}</span>
+                    <ArrowUpRight size={18} className="text-foreground/40 transition group-hover:text-primary group-hover:rotate-45" />
+                  </div>
+                  <img src={c.icon} alt="" className="mt-12 h-20 w-auto opacity-90" />
+                  <h3 className="mt-8 font-heading text-3xl tracking-[-0.02em]">{c.title}</h3>
+                  <p className="mt-2 text-sm text-foreground/65 leading-relaxed">{c.desc}</p>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Lunch */}
-        <section className="mx-auto max-w-7xl px-4 py-20">
-          <div className="text-center max-w-2xl mx-auto">
-            <p className="font-script text-3xl text-primary">Meny</p>
-            <h2 className="mt-1 text-4xl md:text-5xl font-extrabold">Veckans lunch</h2>
-            <p className="mt-3 text-muted-foreground">
-              Inklusive salladsbuffé, dryck & kaffe. Pensionärsrabatt 14 kr.
-            </p>
-          </div>
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-            {lunchMenu.map((d) => (
-              <div key={d.day} className="rounded-2xl border border-border bg-card p-6">
-                <h3 className="text-xl font-bold text-primary">{d.day}</h3>
-                <p className="mt-2 text-sm leading-relaxed">{d.dishes}</p>
-                <p className="mt-4 text-2xl font-extrabold">139:-</p>
+        {/* ───────── LUNCH — magazine table ───────── */}
+        <section className="bg-[color-mix(in_oklab,var(--color-honey)_18%,var(--background))]">
+          <div className="mx-auto max-w-7xl px-4 py-24">
+            <div className="grid gap-8 lg:grid-cols-12 items-end">
+              <div className="lg:col-span-6">
+                <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Kapitel III — Vardagen</p>
+                <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
+                  Veckans lunch
+                  <br />
+                  <span className="italic text-primary" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1, "opsz" 144' }}>på 139:-</span>
+                </h2>
               </div>
-            ))}
+              <div className="lg:col-span-6 lg:text-right">
+                <p className="text-sm text-foreground/70 max-w-md lg:ml-auto">
+                  Inklusive salladsbuffé, dryck &amp; kaffe. Pensionärsrabatt 14 kr.
+                  Serveras måndag–fredag.
+                </p>
+              </div>
+            </div>
+
+            <ul className="mt-14 divide-y divide-foreground/15">
+              {lunchMenu.map((d, i) => (
+                <li
+                  key={d.day}
+                  className="grid grid-cols-[3rem_minmax(0,9rem)_1fr_auto] items-center gap-4 md:gap-8 py-6"
+                >
+                  <span className="font-heading text-sm text-foreground/40 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-heading text-xl md:text-2xl tracking-[-0.01em]">{d.day}</span>
+                  <span className="text-sm md:text-base text-foreground/75 leading-relaxed">{d.dishes}</span>
+                  <span className="font-heading text-lg md:text-xl text-primary tabular-nums">139:-</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
-        {/* Booking */}
-        <section id="boka" className="bg-foreground text-background">
-          <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 lg:grid-cols-2">
-            <div>
-              <p className="font-script text-3xl text-primary">Bokning av bord</p>
-              <h2 className="mt-1 text-4xl md:text-5xl font-extrabold">Boka ett bord hos oss</h2>
-              <p className="mt-4 max-w-md opacity-85">
-                Kontaktinformation, datum och antal gäster är allt vi behöver. Vi bekräftar via telefon eller e-post.
+        {/* ───────── BOOKING ───────── */}
+        <section id="boka" className="relative bg-foreground text-background">
+          <div className="mx-auto max-w-7xl px-4 py-24 grid gap-14 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-background/50">Kapitel IV — Välkommen</p>
+              <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
+                Boka ett bord
+                <br />
+                <span className="italic text-[var(--color-honey)]" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1, "opsz" 144' }}>hos oss.</span>
+              </h2>
+              <p className="mt-6 text-background/75 leading-relaxed max-w-md">
+                Fyll i formuläret eller ring direkt. Vi bekräftar inom kort.
+                Större sällskap, evenemang och catering — använd e-post.
               </p>
-              <div className="mt-8 space-y-3 text-sm">
-                <p><span className="opacity-70">Ring direkt: </span><a className="font-semibold text-primary" href="tel:+46541818200">054-18 18 20</a></p>
-                <p><span className="opacity-70">Event & större sällskap: </span><a className="font-semibold text-primary" href="mailto:Boka@ravensbistro.se">Boka@ravensbistro.se</a></p>
-              </div>
+              <dl className="mt-10 space-y-4">
+                <div className="flex items-baseline gap-4">
+                  <dt className="text-[0.65rem] uppercase tracking-[0.25em] text-background/50 w-20">Telefon</dt>
+                  <dd><a href={RAVEN.phone.href} className="font-heading text-2xl text-[var(--color-honey)] hover:text-background transition-colors">{RAVEN.phone.label}</a></dd>
+                </div>
+                <div className="flex items-baseline gap-4">
+                  <dt className="text-[0.65rem] uppercase tracking-[0.25em] text-background/50 w-20">Event</dt>
+                  <dd><a href={`mailto:${RAVEN.bookingEmail}`} className="font-heading text-xl text-background hover:text-[var(--color-honey)] transition-colors">{RAVEN.bookingEmail}</a></dd>
+                </div>
+                <div className="flex items-baseline gap-4">
+                  <dt className="text-[0.65rem] uppercase tracking-[0.25em] text-background/50 w-20">Tider</dt>
+                  <dd className="text-sm text-background/80">{RAVEN.hoursLong}</dd>
+                </div>
+              </dl>
             </div>
+
             <form
-              className="rounded-2xl bg-background text-foreground p-6 space-y-4"
+              className="lg:col-span-7 rounded-[2rem] bg-background text-foreground p-8 md:p-10 space-y-5 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]"
               onSubmit={(e) => {
                 e.preventDefault();
                 const f = e.currentTarget;
@@ -185,87 +280,117 @@ function HomePage() {
                 const body = encodeURIComponent(
                   `Namn: ${data.get("name")}\nTelefon: ${data.get("phone")}\nAntal gäster: ${data.get("guests")}\nDatum & tid: ${data.get("when")}\n\nMeddelande: ${data.get("msg") || ""}`,
                 );
-                window.location.href = `mailto:Boka@ravensbistro.se?subject=${subject}&body=${body}`;
+                window.location.href = `mailto:${RAVEN.bookingEmail}?subject=${subject}&body=${body}`;
               }}
             >
+              <p className="font-heading text-2xl tracking-[-0.01em]">Förfrågan</p>
               <div className="grid gap-4 sm:grid-cols-2">
-                <input required name="name" placeholder="För- & efternamn" className="rounded-md border border-input bg-background px-3 py-2.5 text-sm" />
-                <input required name="phone" type="tel" placeholder="Telefonnummer" className="rounded-md border border-input bg-background px-3 py-2.5 text-sm" />
-                <input required name="guests" type="number" min="1" placeholder="Antal gäster" className="rounded-md border border-input bg-background px-3 py-2.5 text-sm" />
-                <input required name="when" type="datetime-local" className="rounded-md border border-input bg-background px-3 py-2.5 text-sm" />
+                <FormInput name="name" placeholder="För- &amp; efternamn" required />
+                <FormInput name="phone" type="tel" placeholder="Telefonnummer" required />
+                <FormInput name="guests" type="number" min="1" placeholder="Antal gäster" required />
+                <FormInput name="when" type="datetime-local" required />
               </div>
-              <textarea name="msg" rows={3} placeholder="Önskemål (valfritt)" className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm" />
-              <button type="submit" className="w-full rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground hover:opacity-90">
-                Boka bord på Rävens Bistro
+              <textarea
+                name="msg"
+                rows={3}
+                placeholder="Önskemål (valfritt)"
+                className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:border-primary transition"
+              />
+              <button
+                type="submit"
+                className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background hover:bg-primary transition-colors"
+              >
+                Skicka bokningsförfrågan
+                <ArrowUpRight size={16} className="transition-transform group-hover:rotate-45" />
               </button>
-              <p className="text-xs text-muted-foreground">Bokningen skickas via din e-postklient till Boka@ravensbistro.se.</p>
+              <p className="text-xs text-muted-foreground">Bokningen öppnas i din e-postklient.</p>
             </form>
           </div>
         </section>
 
-        {/* Allergies + Swish */}
-        <section className="mx-auto max-w-7xl px-4 py-20 grid gap-16 lg:grid-cols-2">
-          <div>
-            <p className="font-script text-3xl text-primary">Allergisk?</p>
-            <h2 className="mt-1 text-3xl md:text-4xl font-extrabold">Har du allergier?</h2>
-            <p className="mt-4 leading-relaxed">
-              Fråga oss om innehållet. Glutenfri surdeg kan väljas istället för vanlig pizza.
-              Vill du veta var vårt kött kommer ifrån? Fråga oss!
-            </p>
-          </div>
-          <div>
-            <p className="font-script text-3xl text-primary">Swish</p>
-            <h2 className="mt-1 text-3xl md:text-4xl font-extrabold">Betala enkelt med Swish</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Använd vänster QR för vanlig betalning och höger QR för betalning under evenemang.
-            </p>
-            <div className="mt-6 flex gap-6">
-              <div className="text-center">
-                <img src={swishVanlig} alt="Swish — vanlig betalning" className="w-32" />
-                <p className="mt-2 text-xs font-semibold">Vanlig betalning</p>
-              </div>
-              <div className="text-center">
-                <img src={swishEvent} alt="Swish — evenemang" className="w-32" />
-                <p className="mt-2 text-xs font-semibold">Evenemang</p>
-              </div>
+        {/* ───────── TEAM ───────── */}
+        <section className="mx-auto max-w-7xl px-4 py-24">
+          <div className="grid gap-6 lg:grid-cols-12 items-end mb-14">
+            <div className="lg:col-span-7">
+              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Kapitel V — Människorna</p>
+              <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
+                De som lagar maten.
+              </h2>
             </div>
+            <p className="lg:col-span-5 text-base text-foreground/70 max-w-md">
+              Ett litet, stadigt team som lagar varje rätt från grunden.
+            </p>
           </div>
-        </section>
 
-        {/* Team */}
-        <section className="bg-background border-t border-border">
-          <div className="mx-auto max-w-7xl px-4 py-20">
-            <div className="text-center">
-              <p className="font-script text-3xl text-primary">Vi lagar maten</p>
-              <h2 className="mt-1 text-4xl md:text-5xl font-extrabold">Våra kockar</h2>
-            </div>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 max-w-3xl mx-auto">
-              {[
-                { img: teamRoney, name: "Roney Saad", role: "Grundare & kock" },
-                { img: teamGabriel, name: "Gabriel Al Ajjie", role: "Kock" },
-              ].map((p) => (
-                <div key={p.name} className="text-center">
-                  <img src={p.img} alt={p.name} className="mx-auto aspect-square w-56 rounded-full object-cover" />
-                  <h3 className="mt-5 text-2xl font-bold">{p.name}</h3>
-                  <p className="text-sm text-muted-foreground">{p.role}</p>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { img: teamRoney, name: "Roney Saad", role: "Grundare &amp; kock" },
+              { img: teamGabriel, name: "Gabriel Al Ajjie", role: "Kock" },
+              { img: null, name: "Mariette", role: "Värdinna &amp; medägare" },
+            ].map((p) => (
+              <figure key={p.name} className="group">
+                <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[color-mix(in_oklab,var(--foreground)_8%,var(--background))]">
+                  {p.img ? (
+                    <img
+                      src={p.img}
+                      alt={p.name}
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div className="grid h-full w-full place-items-center font-script text-7xl text-primary">
+                      {p.name.charAt(0)}
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
+                <figcaption className="mt-5">
+                  <p className="font-heading text-2xl tracking-[-0.01em]">{p.name}</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-foreground/55 mt-1" dangerouslySetInnerHTML={{ __html: p.role }} />
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 
-        {/* Stats — speglar originalets svarta stat-rad med line-art ikoner */}
-        <StatsRow
-          items={[
-            { value: "539+", label: "Antal Nöjda Kunder 2023", icon: "smile" },
-            { value: "3", label: "Antalet Grymma kockar", icon: "chef" },
-            { value: "4 300", label: "Tillagade måltider 2023", icon: "soup" },
-            { value: "4,8", label: "Av 5 på Google Reviews", icon: "star" },
-          ]}
-        />
-
+        {/* ───────── DETAILS: Allergies + Swish ───────── */}
+        <section className="bg-[color-mix(in_oklab,var(--foreground)_4%,var(--background))]">
+          <div className="mx-auto max-w-7xl px-4 py-24 grid gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Det praktiska</p>
+              <h2 className="mt-3 font-heading text-4xl md:text-5xl leading-[1.05] tracking-[-0.02em]">Allergier &amp; särskilda önskemål</h2>
+              <p className="mt-5 max-w-xl text-foreground/75 leading-relaxed">
+                Fråga oss alltid — vi har glutenfri surdeg som pizzabotten och hjälper
+                gärna till med övriga allergier. Vill du veta var vårt kött kommer ifrån?
+                Fråga oss på plats så berättar vi om dagens råvaror.
+              </p>
+            </div>
+            <div className="lg:col-span-5">
+              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Betalning</p>
+              <h3 className="mt-3 font-heading text-2xl tracking-[-0.01em]">Swish</h3>
+              <p className="mt-2 text-sm text-foreground/70">Vänster = vanlig betalning. Höger = under evenemang.</p>
+              <div className="mt-6 grid grid-cols-2 gap-4">
+                <figure className="rounded-2xl bg-card p-4 border border-foreground/10">
+                  <img src={swishVanlig} alt="Swish — vanlig betalning" className="w-full" />
+                  <figcaption className="mt-3 text-xs uppercase tracking-[0.2em] text-foreground/60 text-center">Vanlig</figcaption>
+                </figure>
+                <figure className="rounded-2xl bg-card p-4 border border-foreground/10">
+                  <img src={swishEvent} alt="Swish — evenemang" className="w-full" />
+                  <figcaption className="mt-3 text-xs uppercase tracking-[0.2em] text-foreground/60 text-center">Evenemang</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
+  );
+}
+
+function FormInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <input
+      {...props}
+      className="rounded-xl border border-input bg-background px-4 py-3 text-sm placeholder:text-foreground/50 focus:outline-none focus:border-primary transition"
+    />
   );
 }
