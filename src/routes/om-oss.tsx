@@ -4,7 +4,6 @@ import { Footer } from "@/components/site/Footer";
 import { RAVEN } from "@/lib/locations";
 import teamRoney from "@/assets/scraped/team-roney.jpg";
 import teamMariette from "@/assets/mariette-bar.png.asset.json";
-import teamJohan from "@/assets/team-johan.png.asset.json";
 import barInterior from "@/assets/bar-interior.jpg.asset.json";
 import interior from "@/assets/scraped/hero-2.jpg";
 
@@ -94,7 +93,6 @@ function OmOssPage() {
             {[
               { img: teamRoney, name: "Roney Saad", role: "Grundare & kock" },
               { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef" },
-              { img: teamJohan.url, name: "Johan", role: "Kock" },
             ].map((p) => (
               <figure key={p.name}>
                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[color-mix(in_oklab,var(--foreground)_8%,var(--background))]">
