@@ -1,0 +1,160 @@
+/* Fonts loaded via <link> in src/routes/__root.tsx (remote @import breaks Lightning CSS) */
+
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Rävens Bistro design system.
+ * Brand palette extracted from xn--rvensbistro-l8a.se via Firecrawl branding scrape.
+ *   primary red   #EC2C34
+ *   cream bg      #F2F1ED
+ *   ink           #1A1B1D
+ *   muted ink     #75706D
+ * Fonts: Urbanist (headings), Kumbh Sans (body), Just Another Hand (display script).
+ */
+
+@theme inline {
+  --font-sans: "Kumbh Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Urbanist", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Just Another Hand", "Brush Script MT", cursive;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Cream background, near-black text */
+  --background: oklch(0.96 0.005 80);   /* #F2F1ED */
+  --foreground: oklch(0.18 0.005 270);  /* #1A1B1D */
+
+  --cream: oklch(0.96 0.005 80);
+  --ink: oklch(0.18 0.005 270);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.005 270);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.005 270);
+
+  /* Brand red */
+  --primary: oklch(0.61 0.22 27);          /* #EC2C34 */
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.92 0.005 80);
+  --secondary-foreground: oklch(0.18 0.005 270);
+
+  --muted: oklch(0.92 0.005 80);
+  --muted-foreground: oklch(0.50 0.01 60);  /* #75706D */
+
+  --accent: oklch(0.61 0.22 27);
+  --accent-foreground: oklch(1 0 0);
+
+  --destructive: oklch(0.61 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.88 0.005 80);
+  --input: oklch(0.88 0.005 80);
+  --ring: oklch(0.61 0.22 27);
+}
+
+.dark {
+  --background: oklch(0.18 0.005 270);
+  --foreground: oklch(0.96 0.005 80);
+  --card: oklch(0.21 0.005 270);
+  --card-foreground: oklch(0.96 0.005 80);
+  --popover: oklch(0.21 0.005 270);
+  --popover-foreground: oklch(0.96 0.005 80);
+  --primary: oklch(0.65 0.22 27);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.25 0.005 270);
+  --secondary-foreground: oklch(0.96 0.005 80);
+  --muted: oklch(0.25 0.005 270);
+  --muted-foreground: oklch(0.70 0.01 60);
+  --accent: oklch(0.65 0.22 27);
+  --accent-foreground: oklch(1 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.65 0.22 27);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
+  }
+  .font-script {
+    font-family: var(--font-script);
+  }
+}
+
+/* Markdown content from scraped pages */
+.prose-bistro h1 { font-size: 2.5rem; font-weight: 800; margin: 1.5rem 0 0.75rem; }
+.prose-bistro h2 { font-size: 2rem; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--color-primary); }
+.prose-bistro h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.25rem; }
+.prose-bistro h5, .prose-bistro h6 { font-size: 1rem; font-weight: 700; color: var(--color-primary); margin: 0.5rem 0; }
+.prose-bistro p  { margin: 0.5rem 0; line-height: 1.6; }
+.prose-bistro ul { list-style: disc; padding-left: 1.5rem; margin: 0.75rem 0; }
+.prose-bistro ol { list-style: decimal; padding-left: 1.5rem; margin: 0.75rem 0; }
+.prose-bistro a  { color: var(--color-primary); text-decoration: underline; }
+.prose-bistro img { border-radius: 0.75rem; margin: 1rem 0; max-width: 100%; height: auto; }
+.prose-bistro hr { margin: 2rem 0; border-color: var(--color-border); }
+
+/* Looping marquee (pausar vid hover) */
+@keyframes bistro-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 3rem;
+  white-space: nowrap;
+  animation: bistro-marquee 40s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
