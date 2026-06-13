@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import heroBarAsset from "@/assets/mariette-bar.png.asset.json";
 import heroPizza from "@/assets/scraped/hero-pizza.jpg";
 import hero2 from "@/assets/scraped/hero-2.jpg";
 import pizzaIcon from "@/assets/scraped/pizza-icon.png";
@@ -90,10 +91,10 @@ function HomePage() {
               {/* Stacked image collage */}
               <div className="lg:col-span-5 relative">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-foreground/5 shadow-[0_30px_60px_-30px_rgba(27,20,17,0.35)]">
-                  <img src={heroPizza} alt="Vedugnsbakad pizza från Rävens Bistro" className="h-full w-full object-cover" />
+                  <img src={heroBarAsset.url} alt="Baren på Rävens Bistro" className="h-full w-full object-cover" />
                 </div>
                 <div className="absolute -bottom-10 -left-10 hidden md:block w-44 aspect-[4/5] overflow-hidden rounded-[1.5rem] ring-8 ring-background">
-                  <img src={hero2} alt="Stämning i bistron" className="h-full w-full object-cover" />
+                  <img src={heroPizza} alt="Vedugnsbakad pizza från Rävens Bistro" className="h-full w-full object-cover" />
                 </div>
                 <div className="absolute -top-6 -right-4 rounded-full bg-[var(--color-honey)] text-foreground px-5 py-3 text-[0.7rem] uppercase tracking-[0.25em] font-bold shadow-md rotate-3">
                   Sedan {RAVEN.since}
