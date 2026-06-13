@@ -14,7 +14,7 @@ import hero2 from "@/assets/scraped/hero-2.jpg";
 import heroPizza from "@/assets/scraped/hero-pizza.jpg";
 import roney from "@/assets/scraped/roney.png";
 import teamRoney from "@/assets/scraped/team-roney.jpg";
-import teamGabriel from "@/assets/scraped/team-gabriel.jpg";
+import teamMariette from "@/assets/mariette-bar.png.asset.json";
 import pizzaIcon from "@/assets/scraped/pizza-icon.png";
 import alacarteIcon from "@/assets/scraped/alacarte-icon.png";
 import kebabIcon from "@/assets/scraped/kebab-icon.png";
@@ -30,7 +30,7 @@ const media = [
   { src: heroPizza, name: "hero-pizza.jpg", used: "Startsidan — pizzabild" },
   { src: roney, name: "roney.png", used: "Startsidan — citat" },
   { src: teamRoney, name: "team-roney.jpg", used: "Team / Om oss" },
-  { src: teamGabriel, name: "team-gabriel.jpg", used: "Team / Om oss" },
+  { src: teamMariette.url, name: "mariette-bar.png", used: "Team / Om oss — Mariette" },
   { src: pizzaIcon, name: "pizza-icon.png", used: "Meny-ikon" },
   { src: alacarteIcon, name: "alacarte-icon.png", used: "Meny-ikon" },
   { src: kebabIcon, name: "kebab-icon.png", used: "Meny-ikon" },
