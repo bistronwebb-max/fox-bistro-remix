@@ -11,6 +11,14 @@ import swishVanlig from "@/assets/scraped/swish-vanlig.png";
 import swishEvent from "@/assets/scraped/swish-event.png";
 import teamRoney from "@/assets/scraped/team-roney.jpg";
 import teamMariette from "@/assets/mariette-bar.png.asset.json";
+import gFood1 from "@/assets/scraped/pizza-hero.jpg.asset.json";
+import gFood2 from "@/assets/scraped/food-ig-01.jpg.asset.json";
+import gFood3 from "@/assets/scraped/food-ig-02.jpg.asset.json";
+import gFood4 from "@/assets/scraped/food-ig-04.jpg.asset.json";
+import gFood5 from "@/assets/scraped/food-ig-05.jpg.asset.json";
+import gFood6 from "@/assets/scraped/food-ig-06.jpg.asset.json";
+import gFood7 from "@/assets/scraped/dinner.jpg.asset.json";
+import gFood8 from "@/assets/scraped/food-ig-08.jpg.asset.json";
 import { RAVEN } from "@/lib/locations";
 import { ArrowUpRight, Phone, MapPin, Clock } from "lucide-react";
 
@@ -238,6 +246,36 @@ function HomePage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        {/* ───────── BOOKING ───────── */}
+        {/* ───────── SMYGTITT — strip of food images ───────── */}
+        <section aria-labelledby="smygtitt" className="overflow-hidden border-y border-foreground/10 bg-background">
+          <div className="mx-auto max-w-7xl px-4 pt-16 pb-8 flex items-end justify-between gap-6">
+            <div>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Ur köket</p>
+              <h2 id="smygtitt" className="mt-2 font-heading text-3xl md:text-4xl tracking-[-0.02em]">En smygtitt.</h2>
+            </div>
+            <Link to="/galleri" className="link-underline text-sm font-semibold tracking-wide text-foreground whitespace-nowrap">
+              Fler bilder i galleriet →
+            </Link>
+          </div>
+          <div className="pb-16">
+            <div className="marquee-track">
+              {[...Array(2)].flatMap((_, dup) =>
+                [gFood1, gFood2, gFood3, gFood4, gFood5, gFood6, gFood7, gFood8].map((img, i) => (
+                  <span key={`${dup}-${i}`} className="inline-block shrink-0">
+                    <img
+                      src={img.url}
+                      alt=""
+                      loading="lazy"
+                      className="h-48 md:h-64 w-auto rounded-xl object-cover"
+                    />
+                  </span>
+                )),
+              )}
+            </div>
           </div>
         </section>
 

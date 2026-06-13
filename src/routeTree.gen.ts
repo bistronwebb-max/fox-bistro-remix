@@ -16,6 +16,7 @@ import { Route as MenyRouteImport } from './routes/meny'
 import { Route as KontaktaOssRouteImport } from './routes/kontakta-oss'
 import { Route as InterntRouteImport } from './routes/internt'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
+import { Route as GalleriRouteImport } from './routes/galleri'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CateringRouteImport } from './routes/catering'
 import { Route as IndexRouteImport } from './routes/index'
@@ -55,6 +56,11 @@ const IntegritetspolicyRoute = IntegritetspolicyRouteImport.update({
   path: '/integritetspolicy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GalleriRoute = GalleriRouteImport.update({
+  id: '/galleri',
+  path: '/galleri',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/catering': typeof CateringRoute
   '/faq': typeof FaqRoute
+  '/galleri': typeof GalleriRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/internt': typeof InterntRoute
   '/kontakta-oss': typeof KontaktaOssRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/catering': typeof CateringRoute
   '/faq': typeof FaqRoute
+  '/galleri': typeof GalleriRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/internt': typeof InterntRoute
   '/kontakta-oss': typeof KontaktaOssRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/catering': typeof CateringRoute
   '/faq': typeof FaqRoute
+  '/galleri': typeof GalleriRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/internt': typeof InterntRoute
   '/kontakta-oss': typeof KontaktaOssRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/catering'
     | '/faq'
+    | '/galleri'
     | '/integritetspolicy'
     | '/internt'
     | '/kontakta-oss'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/catering'
     | '/faq'
+    | '/galleri'
     | '/integritetspolicy'
     | '/internt'
     | '/kontakta-oss'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/catering'
     | '/faq'
+    | '/galleri'
     | '/integritetspolicy'
     | '/internt'
     | '/kontakta-oss'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CateringRoute: typeof CateringRoute
   FaqRoute: typeof FaqRoute
+  GalleriRoute: typeof GalleriRoute
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   InterntRoute: typeof InterntRoute
   KontaktaOssRoute: typeof KontaktaOssRoute
@@ -211,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IntegritetspolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/galleri': {
+      id: '/galleri'
+      path: '/galleri'
+      fullPath: '/galleri'
+      preLoaderRoute: typeof GalleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CateringRoute: CateringRoute,
   FaqRoute: FaqRoute,
+  GalleriRoute: GalleriRoute,
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   InterntRoute: InterntRoute,
   KontaktaOssRoute: KontaktaOssRoute,

@@ -1,51 +1,67 @@
-## Vad jag hittade
+## Mål
 
-WordPress-mediabiblioteket är öppet via `/wp-json/wp/v2/media`, så jag kan hämta originalbilderna direkt — inget behov av Firecrawl eller manuell skrapning. Allt nedan ligger på `xn--rvensbistro-l8a.se/wp-content/uploads/...` i originalupplösning.
+Få in de skrapade bilderna på rätt platser utan att tynga sidan. Lösning som inte kräver att du kör TinyPNG manuellt — vi låter bygget göra jobbet.
 
-**Mat- och miljöbilder (de viktiga):**
+## Problemet med bilderna idag
 
-| Filnamn | Vad | Föreslagen användning |
-|---|---|---|
-| `2024/03/Ravens-74-of-108.jpg` | Bistron inifrån, hög upplösning | Hero / om-oss-interiör |
-| `2024/04/Ravens-97-of-108.jpg` | Interiör | Reserv / sektion |
-| `2024/04/Ravens-102-of-108.jpg` | Interiör | Reserv / sektion |
-| `2024/03/image-2-first-sektion.jpg` | Gamla headersektionen | Header-fallback |
-| `2024/02/pizza-start-1.jpg` | Vedugnspizza-närbild | Meny-hero eller pizza-kort |
-| `2024/03/PSX_20240320_192851.jpg` | Mat/miljö | Galleri |
-| `2024/03/PSX_20240320_193417.jpg` | Mat/miljö | Galleri |
-| `2024/03/PSX_20240320_193505.jpg` | Mat/miljö | Galleri |
-| `2024/04/dinner-omoss123.jpg` | Middagsmiljö | Om-oss-sektion |
-| `2024/04/live1.jpg` / `live2.jpg` / `live3.jpg` | Livemusik/event | Evenemang-sektion |
-| `2024/04/raven.jpg` | Korp/profil | Dekor |
-| `2024/04/Menu-header.png` | Menyheader-grafik | Meny-sida topp |
-| `2024/04/415491041…_n.jpg` … `438125007…_n.jpg` (10 st) | Instagramskörd, mat/miljö | Galleri / rätt-kort |
-| `2025/02/1000028226.jpg` | Färsk miljöbild | Hero-kandidat |
-| `2025/06/495317518…_n.jpg` | Färsk miljöbild | Galleri |
-| `2025/09/1000039989.jpg` | Stämningsbild | Galleri |
-| `2024/06/bokningbgbg.jpg` | Bokningsbakgrund | Boka-sektion |
-| `2024/08/catering-bg-1.jpg` / `cateringen-bgbg.jpg` | Cateringbakgrund | Catering-sida |
-| `2025/01/anthony-delanoix-hzgs56Ze49s-unsplash.jpg` | Stockbild (Unsplash) | **Skippas** — inte er egen |
-
-**Headerbilden från Revolution Slider** ligger som `data-lazyload` på startsidan — jag fångar den i samma sväng (`PSX_20240320_192851-scaled.jpg`, redan i listan ovan).
-
-**Logos/grafik** finns redan i `src/assets/scraped/`, jag rör inte dem.
+Några av de skrapade filerna är råa (interior-1: 14 MB, interior-2: 11 MB, psx-3: 12 MB). Lägger vi in dem direkt blir startsidan långsam. Lösningen nedan komprimerar och format-konverterar automatiskt vid första visning via CDN-pipen — du slipper TinyPNG, jag slipper ladda upp dubbletter.
 
 ## Plan
 
-1. **Ladda ner** alla matchande bilder från listan ovan till `/tmp` med `curl`.
-2. **Verifiera** att filerna är hela och inte 404/0 byte.
-3. **Ladda upp** varje fil via `lovable-assets create` och spara pekaren som `src/assets/scraped/<namn>.<ext>.asset.json`. Använd korta, läsbara namn:
-   - `interior-1.jpg`, `interior-2.jpg`, `interior-3.jpg`, `interior-old-header.jpg`, `dinner.jpg`
-   - `pizza-hero.jpg`, `psx-1.jpg`, `psx-2.jpg`, `psx-3.jpg`
-   - `event-live-1.jpg`, `event-live-2.jpg`, `event-live-3.jpg`
-   - `food-ig-01.jpg` … `food-ig-10.jpg` (Instagramskörden)
-   - `raven.jpg`, `menu-header.png`, `booking-bg.jpg`, `catering-bg-1.jpg`, `catering-bg-2.jpg`
-   - `stamning-2025.jpg`, `stamning-2025-late.jpg`, `interior-2025.jpg`
-4. **Inga kodändringar i den här rundan.** Bilderna hamnar i biblioteket — du och jag väljer sedan vilken som ska in var (hero, menyhero, om-oss, galleri etc.) i nästa steg.
+### 1. Bildoptimerings-hjälpare (en gång)
 
-## Vad jag behöver veta
+Skapa `src/lib/img.ts` med en liten helper `cdn(url, { w, q })` som lägger på query-parametrar (`?w=1200&q=75&format=webp`) på `/__l5e/`-URL:erna. Lovables CDN respekterar dessa och serverar nedskalade WebP-varianter — originalet ligger orört i banken, men besökaren får t.ex. 180 KB istället för 14 MB.
 
-- **OK att jag hämtar hela listan ovan i ett svep?** Eller vill du att jag plockar bort något (t.ex. hoppa över Instagram-skörden om de känns för "sociala")?
-- Den enda jag redan filtrerat bort är Unsplash-stockbilden. Säg till om du vill ha med fler/färre.
+Användning:
+```tsx
+<img src={cdn(interior1.url, { w: 1600 })} ... />
+```
 
-Säg "kör" så hämtar jag och laddar upp allt. Sedan tar vi en runda till där vi pekar in bilderna i kod.
+Plus `loading="lazy"` och explicit `width`/`height` för att undvika CLS.
+
+### 2. Ny route: `/galleri`
+
+`src/routes/galleri.tsx` med två sektioner:
+
+- **Från köket** — grid (2 kol mobil, 3-4 kol desktop) med `food-ig-01..10`, `pizza-hero`, `dinner`, `psx-1..3`.
+- **I bistron** — `interior-1/2/3/2025`, `stamning-2025`, `stamning-2025-late`, `event-live-1/2/3`.
+
+Klick öppnar bilden i en enkel lightbox (shadcn `Dialog`) — ingen tung tredjeparts-lib.
+
+Egen `head()` med titel/description för SEO ("Bilder från Rävens Bistro i Väse").
+
+### 3. Länk i menyn
+
+Lägg till "Galleri" i `Header.tsx` och som länk i `Footer.tsx`. Diskret, inte tonggivande.
+
+### 4. Smygtitt på startsidan
+
+En auto-scrollande remsa (i stil med befintliga `Marquee`) med 6-8 matbilder strax före boka-sektionen, rubrik *"Ur köket"* och länk *"Fler bilder i galleriet →"*. Återanvänder marquee-mönstret så det känns hemma.
+
+### 5. Punktinsatser på övriga sidor (lätt hand)
+
+- **`/meny`**: `pizza-hero.jpg` som stillbild i hero-sektionen (ovanför nuvarande gradient). Ingen karusell.
+- **`/om-oss`**: 1-2 interiörbilder som sektionsbild — ersätter en av de mörka korten. Gör sidan varmare utan att tappa fokus på Roney & Mariette.
+- **`/catering`**: `catering-bg-1.jpg` som diskret bakgrund/sektionsbild där det passar.
+- **Boka-sektionen på `/`**: `booking-bg.jpg` som dim:ad bakgrund.
+
+### 6. Prestanda-skydd
+
+- Varje `<img>` får `loading="lazy"` (utom det första i hero som blir `fetchpriority="high"`).
+- Galleri-bilder begränsas till `w=800` i grid, `w=1600` i lightbox.
+- Inga bilder bundlas — alla går via CDN, så bundle-storleken växer inte.
+
+## Vad jag inte gör
+
+- Ingen karusell med pilar — vi enades om att stillbilder + galleri är bättre.
+- Ingen ompackning av bilder till `src/assets`. De stannar som `.asset.json`-pekare.
+- Rör inte logiken/data — bara presentation.
+
+## Vad du får
+
+- En `/galleri`-sida att skicka folk till.
+- En levande startsida som inte är en bildbomb.
+- Mat- och miljöbilder förankrade på rätt platser.
+- Laddning förblir snabb tack vare CDN-resize + lazy-load.
+
+Säg till om något ska bort eller läggas till, annars sätter jag igång.
