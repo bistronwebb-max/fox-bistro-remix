@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VillkorRouteImport } from './routes/villkor'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as OmOssRouteImport } from './routes/om-oss'
-import { Route as MolkomsPizzeriaRouteImport } from './routes/molkoms-pizzeria'
 import { Route as MenyRouteImport } from './routes/meny'
 import { Route as KontaktaOssRouteImport } from './routes/kontakta-oss'
 import { Route as InterntRouteImport } from './routes/internt'
@@ -34,11 +33,6 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const OmOssRoute = OmOssRouteImport.update({
   id: '/om-oss',
   path: '/om-oss',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MolkomsPizzeriaRoute = MolkomsPizzeriaRouteImport.update({
-  id: '/molkoms-pizzeria',
-  path: '/molkoms-pizzeria',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MenyRoute = MenyRouteImport.update({
@@ -85,7 +79,6 @@ export interface FileRoutesByFullPath {
   '/internt': typeof InterntRoute
   '/kontakta-oss': typeof KontaktaOssRoute
   '/meny': typeof MenyRoute
-  '/molkoms-pizzeria': typeof MolkomsPizzeriaRoute
   '/om-oss': typeof OmOssRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/villkor': typeof VillkorRoute
@@ -98,7 +91,6 @@ export interface FileRoutesByTo {
   '/internt': typeof InterntRoute
   '/kontakta-oss': typeof KontaktaOssRoute
   '/meny': typeof MenyRoute
-  '/molkoms-pizzeria': typeof MolkomsPizzeriaRoute
   '/om-oss': typeof OmOssRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/villkor': typeof VillkorRoute
@@ -112,7 +104,6 @@ export interface FileRoutesById {
   '/internt': typeof InterntRoute
   '/kontakta-oss': typeof KontaktaOssRoute
   '/meny': typeof MenyRoute
-  '/molkoms-pizzeria': typeof MolkomsPizzeriaRoute
   '/om-oss': typeof OmOssRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/villkor': typeof VillkorRoute
@@ -127,7 +118,6 @@ export interface FileRouteTypes {
     | '/internt'
     | '/kontakta-oss'
     | '/meny'
-    | '/molkoms-pizzeria'
     | '/om-oss'
     | '/sitemap.xml'
     | '/villkor'
@@ -140,7 +130,6 @@ export interface FileRouteTypes {
     | '/internt'
     | '/kontakta-oss'
     | '/meny'
-    | '/molkoms-pizzeria'
     | '/om-oss'
     | '/sitemap.xml'
     | '/villkor'
@@ -153,7 +142,6 @@ export interface FileRouteTypes {
     | '/internt'
     | '/kontakta-oss'
     | '/meny'
-    | '/molkoms-pizzeria'
     | '/om-oss'
     | '/sitemap.xml'
     | '/villkor'
@@ -167,7 +155,6 @@ export interface RootRouteChildren {
   InterntRoute: typeof InterntRoute
   KontaktaOssRoute: typeof KontaktaOssRoute
   MenyRoute: typeof MenyRoute
-  MolkomsPizzeriaRoute: typeof MolkomsPizzeriaRoute
   OmOssRoute: typeof OmOssRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VillkorRoute: typeof VillkorRoute
@@ -194,13 +181,6 @@ declare module '@tanstack/react-router' {
       path: '/om-oss'
       fullPath: '/om-oss'
       preLoaderRoute: typeof OmOssRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/molkoms-pizzeria': {
-      id: '/molkoms-pizzeria'
-      path: '/molkoms-pizzeria'
-      fullPath: '/molkoms-pizzeria'
-      preLoaderRoute: typeof MolkomsPizzeriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/meny': {
@@ -263,7 +243,6 @@ const rootRouteChildren: RootRouteChildren = {
   InterntRoute: InterntRoute,
   KontaktaOssRoute: KontaktaOssRoute,
   MenyRoute: MenyRoute,
-  MolkomsPizzeriaRoute: MolkomsPizzeriaRoute,
   OmOssRoute: OmOssRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VillkorRoute: VillkorRoute,
@@ -271,13 +250,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

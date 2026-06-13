@@ -63,12 +63,6 @@ function HomePage() {
                   Se menyn
                 </Link>
               </div>
-              <Link
-                to="/molkoms-pizzeria"
-                className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary hover:underline"
-              >
-                Vår pizzeria finns även i Molkom →
-              </Link>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <img src={heroPizza} alt="Pizza från Rävens Bistro" className="aspect-[4/5] w-full rounded-2xl object-cover" />
@@ -153,8 +147,7 @@ function HomePage() {
             <p className="font-script text-3xl text-primary">Meny</p>
             <h2 className="mt-1 text-4xl md:text-5xl font-extrabold">Veckans lunch</h2>
             <p className="mt-3 text-muted-foreground">
-              Inklusive salladsbuffé, dryck & kaffe. Pensionärsrabatt 14 kr. Samma lunch serveras i Molkom —
-              det som heter <em>Väse special</em> här heter <em>Molkoms special</em> där.
+              Inklusive salladsbuffé, dryck & kaffe. Pensionärsrabatt 14 kr.
             </p>
           </div>
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">

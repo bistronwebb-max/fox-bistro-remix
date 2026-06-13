@@ -1,58 +1,86 @@
-## Bakgrund (verifierat via webbsökning)
-
-Molkoms Pizzeria finns och ligger redan som undersida på `rävensbistro.se/molkoms-pizzeria`. Det är alltså **inte två separata kunder** — det är **en verksamhet med två lokaler** som Roney redan driver. Det förenklar berättelsen.
-
-| | Väse Bistro | Molkoms Pizzeria |
-|---|---|---|
-| Adress | Storgatan 38, 660 57 Väse | Mejerivägen 15, **655 60** Molkom |
-| Telefon | 054-18 18 20 | 0553-101 07 |
-| Bolag | (Rävens Bistro) | Molkom Pizzeria AB |
-| Öppet | Mån–Tor 11–21, Fre–Lör 11–22, Sön 11–21 | **Mån 12–22, Tis–Ons 12–22, Tor–Lör 11–22, Sön 11–22** |
-| Tonalitet | Bistro, à la carte, evenemang | Ortens pizzeria, inbakade, familj |
-
 ## Mål
 
-Få sajten faktamässigt korrekt (postnummer, öppettider) och berätta den sanna historien — *en familj, två kök* — så Roney känner igen sin verksamhet vid mötet.
+Två tydliga faser:
 
-## Vad vi gör
+**Fas 1 — Städning.** Bort med allt Molkom-arv så koden bara handlar om Rävens Bistro i Väse. Inga "systerrestaurang"-spår, inga växla-ort-länkar, inga dubbla footer-kolumner.
 
-### 1. Rätta hårda fakta (snabba men viktiga)
-- **Footer (`Footer.tsx`)**: Molkoms öppettider ändras från "Tis–Sön 11–21 · Mån stängt" → "Mån–Ons 12–22 · Tor–Lör 11–22 · Sön 11–22". Postnummer 655 60 läggs till.
-- **Molkom-sidan (`molkoms-pizzeria.tsx`)**: Telefon-href fixas (`tel:+46553101 07` har space — ska vara `tel:+46553101 07` → `tel:+46055310107`). Adress får postnummer.
-- **Header (`Header.tsx`)**: Samma telefon-fix (`tel:+460553101 07` → `tel:+46055310107`).
-- **MarkdownPage banner**: Postnummer och korrekta öppettider för Molkom.
+**Fas 2 — Redesign.** Bygga Rävens Bistro så snyggt att Roney kan visa det för vem som helst. Vi följer redesign-ritualen: först låser vi smaken (färg, typografi, layout) med ett visuellt val, sen genererar vi tre färdiga riktningar att välja mellan, sen bygger jag den valda. Inget gissande.
 
-### 2. Byt narrativ från "systerrestaurang" → "samma familj, två lokaler"
-- I copy på Molkom-sidan, footer, om-oss och hero-texter: ersätt "vår systerrestaurang" och "drivs av samma familj" med varianter som tydliggör att det är *samma verksamhet*.
-- Footer-marquee uppdateras: "Rävens Bistro i Väse · Molkoms Pizzeria i Molkom · Samma kök, två orter".
-- Om-oss-sidan får ett stycke om att Roney driver båda och varför.
+Om Firecrawl: vi behöver inte skrapa om nu. Det vi redan har i `src/data/scraped.json` (meny, om-oss, kontakt) räcker som textbas. Firecrawl-kopplingen ligger ändå kvar och kan användas senare när Roney vill uppdatera meny eller priser från sin sajt.
 
-### 3. Skarpare ortidentitet utan att splittra varumärket
-- **Bakgrundsmotiv** (`Motifs.tsx`): Väse = rävar/bestick/glas (finns), Molkom = pizzaskärare/mjöl/ugn (finns). Behålls.
-- **Hero-copy mirroring**: Väse-hero "Värmlands bästa matupplevelse" (från riktig sajt) speglas till Molkom-hero med "Ortens pizzeria sen 2016".
-- Ingen separat färgaccent — vi håller rött genomgående. Skillnaden ligger i copy, motiv och bilder.
+---
 
-### 4. Mötespaket-finish
-- En liten "uppdaterat efter möte med Roney"-flagga längst ner i footern, så Roney ser att fakta är *våra antaganden från offentlig data*, inte påhitt.
-- Skapa en intern fil `src/data/oppna-fragor.md` med fält Roney behöver fylla i (lunchpriser, evenemangskalender, allergener, om Molkom har lunchservering, social-media-länkar). Vi nämner den i ett följande chat-svar — den läggs **inte** ut publikt på sajten.
+## Fas 1 — Städning (mekanisk, ingen designdiskussion)
 
-### 5. Vad vi **inte** rör i den här rundan
-- Bokningssystem (Google Forms får leva tills Roney sagt ja till Lovable Cloud)
-- Beställning online / e-handel
-- Domänkoppling
-- Designsystemets färger/typografi (sitter bra)
+### Filer som raderas
+- `src/routes/molkoms-pizzeria.tsx`
+- `src/data/oppna-fragor.md` (ersätts med ny Väse-version eller tas bort helt — se nedan)
+
+### Filer som skalas ner
+- `src/lib/locations.ts` → reduceras till en `RAVEN` konstant (adress, telefon, mejl, öppettider, mapsUrl). `useActiveLocation` / `otherLocation` / `LOCATIONS` tas bort. Allt som importerar dem uppdateras att läsa direkt från konstanten.
+- `src/data/scraped.json` → nyckeln `"molkoms-pizzeria"` tas bort.
+
+### Filer som rensas från Molkom-referenser
+- `src/components/site/Header.tsx` — växla-ort-länken bort, telefon hårdkodas till Väse, navlogik förenklas (inga feature-flaggor — Väse har allt).
+- `src/components/site/Footer.tsx` — marquee-fraser, dubbel adresskolumn, `Du är hos…/Besök…`-knapparna och copyright bort. En ren Väse-footer.
+- `src/components/site/MarkdownPage.tsx` — den nedre dubbel-info-sektionen tas bort.
+- `src/routes/index.tsx` — "Vår pizzeria finns även i Molkom →"-länken och Molkom-meningen i lunchblocket bort.
+- `src/routes/om-oss.tsx`, `meny.tsx`, `kontakta-oss.tsx`, `catering.tsx`, `faq.tsx` — intros och `MarkdownPage`-text rensas från Molkom-omnämnanden.
+- `src/routes/villkor.tsx`, `integritetspolicy.tsx` — samma rensning.
+- `src/routes/sitemap[.]xml.ts` — `/molkoms-pizzeria` bort.
+- Alla `head().meta` (titel + og:title + og:description) byts från `"— Rävens Bistro & Molkoms Pizzeria"` till bara `"— Rävens Bistro"`.
+
+### Komponenter
+- `src/components/site/Motifs.tsx` — `variant="pizza"` (Molkom-motivet) kan ligga kvar eller tas bort. Förslag: behåll, men dokumentera som "pizza-motiv för pizzasektion på Väse", eftersom Väse också serverar pizza.
+
+### Nytt internt arbetsdokument
+- `src/data/oppna-fragor.md` skrivs om till en kort Väse-only-lista (bilder från Roney, vektorlogo, evenemangsdatum, om vi får skriva ut Gabriel som anställd). Tidigare Molkom-frågor markeras avklarade ("Molkom sålt — utgår").
+
+### Verifiering efter Fas 1
+- `rg -i "molkom"` ska bara träffa möjligen kommentarer i `oppna-fragor.md` (historik).
+- Build går grön, preview laddar `/`, `/meny`, `/om-oss`, `/kontakta-oss`, `/catering`, `/faq`, `/villkor`, `/integritetspolicy`.
+- `/molkoms-pizzeria` ska ge 404 via root `notFoundComponent`.
+
+---
+
+## Fas 2 — Redesign-ritual
+
+När Fas 1 är klar och preview visar en ren Väse-sajt:
+
+### Steg 2a — Capture
+Jag tar en skärmdump av den nystädade `/` som referens.
+
+### Steg 2b — Pin the taste
+Tre visuella frågor i en runda (du svarar genom att klicka på alternativ):
+1. **Palette** — 3 förslag som funkar för bistro/mat (varm jordton, mörk fine-dining, ljus skandinavisk).
+2. **Typografi** — 3 typsnittspar (t.ex. modern serif + sans, editorial display + grotesk, varm humanist + script-accent).
+3. **Layout** — 3 wireframe-strukturer (klassisk hero+rutnät, redaktionellt magazine, asymmetrisk broken-grid).
+
+Inga "vad är vibben?"-frågor. Bara tre konkreta val.
+
+### Steg 2c — Tre riktningar
+Med dina val låsta genererar jag tre fullt renderade designriktningar för startsidan. De delar palett/typografi/layout men har olika hållning, densitet och rytm. Du ser dem som klickbara previews.
+
+### Steg 2d — Bygg
+Du väljer en. Jag implementerar exakt den valda riktningen — design-tokens kopieras rakt av in i `src/styles.css`, komposition och densitet matchas, och sedan rullar jag ut samma språk på övriga sidor (`/meny`, `/om-oss`, `/catering`, `/kontakta-oss`, `/faq`).
+
+### Vad jag INTE rör i den här rundan
+- Bordsbokning via Lovable Cloud (separat beslut — Google Forms/mailto kvar tills du säger annat).
+- Domänkoppling.
+- Beställning online.
+- Nya bilder (vi använder befintliga `src/assets/scraped/*` tills Roney skickar nya).
+
+---
 
 ## Teknisk sammanfattning
 
-Filer som ändras:
-- `src/components/site/Header.tsx` — telefon-href-fix
-- `src/components/site/Footer.tsx` — Molkom öppettider + postnummer + marquee-text
-- `src/components/site/MarkdownPage.tsx` — Molkom öppettider + postnummer i banner
-- `src/routes/molkoms-pizzeria.tsx` — telefon-href, adress, copy "systerrestaurang" → "vår pizzeria i Molkom"
-- `src/routes/om-oss.tsx` — stycke om att Roney driver båda
-- `src/routes/faq.tsx` — korrekta öppettider, klargör att det är samma verksamhet
+- Inga nya paket.
+- Ingen schemaändring.
+- Inga nya routes; en route (`molkoms-pizzeria`) raderas.
+- `routeTree.gen.ts` regenereras automatiskt när Molkom-routen försvinner.
+- Alla canonical/og:url-värden är redan relativa — påverkas inte.
+- Firecrawl-nyckeln (`FIRECRAWL_API_KEY`) ligger kvar oanvänd, redo för framtida menyuppdateringar.
 
-Nya filer:
-- `src/data/oppna-fragor.md` — internt arbetsdokument inför Roney-mötet (inte publikt)
+## Vad du gör nu
 
-Inga nya paket. Inga schemaändringar. Ingen ny route.
+Säg "kör" så börjar jag med Fas 1. När den är grön ställer jag de tre visuella frågorna för Fas 2.

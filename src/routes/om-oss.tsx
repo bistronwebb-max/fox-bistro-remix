@@ -16,7 +16,7 @@ export const Route = createFileRoute("/om-oss")({
   component: () => (
     <MarkdownPage
       title="Om oss"
-      intro="Roney Saad driver Rävens Bistro i Väse (sedan 2018) och Molkoms Pizzeria i Molkom (sedan 2016) — samma familj, samma kök, två orter i Värmland."
+      intro="Roney Saad grundade Rävens Bistro i Väse 2018 — en mysig bistro strax utanför Karlstad där genuina smaker möter en vänlig atmosfär."
       markdown={scraped["om-oss"]}
     />
   ),

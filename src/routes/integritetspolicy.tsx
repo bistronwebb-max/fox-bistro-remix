@@ -5,13 +5,13 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/integritetspolicy")({
   head: () => ({
     meta: [
-      { title: "Integritetspolicy | Rävens Bistro & Molkoms Pizzeria" },
-      { name: "description", content: "Så här behandlar vi dina personuppgifter enligt GDPR — Rävens Bistro & Molkoms Pizzeria." },
+      { title: "Integritetspolicy | Rävens Bistro" },
+      { name: "description", content: "Så här behandlar vi dina personuppgifter enligt GDPR — Rävens Bistro." },
       { property: "og:title", content: "Integritetspolicy" },
       { property: "og:description", content: "GDPR och hur vi hanterar dina uppgifter." },
-      { property: "og:url", content: "https://fox-whisper-remix.lovable.app/integritetspolicy" },
+      { property: "og:url", content: "/integritetspolicy" },
     ],
-    links: [{ rel: "canonical", href: "https://fox-whisper-remix.lovable.app/integritetspolicy" }],
+    links: [{ rel: "canonical", href: "/integritetspolicy" }],
   }),
   component: PrivacyPage,
 });
@@ -38,7 +38,7 @@ function PrivacyPage() {
         <p className="mt-2">Webbplatsen använder endast tekniskt nödvändiga cookies. Ingen spårning för marknadsföring sker utan ditt samtycke.</p>
 
         <h2 className="mt-8 text-2xl font-bold">Personuppgiftsansvarig</h2>
-        <p className="mt-2">Rävens Bistro & Molkoms Pizzeria — gemensam ansvarsadress: Storgatan 38, 660 57 Väse (Väse Bistro sedan 2018) samt Mejerivägen 15, Molkom (Molkoms Pizzeria sedan 2016).</p>
+        <p className="mt-2">Rävens Bistro, Storgatan 38, 660 57 Väse — sedan 2018.</p>
       </main>
       <Footer />
     </div>

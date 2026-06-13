@@ -27,7 +27,7 @@ const media = [
   { src: favicon, name: "favicon.png", used: "(reserv)" },
   { src: footerImg, name: "footer-img.png", used: "(reserv)" },
   { src: hero2, name: "hero-2.jpg", used: "Startsidan — stämningsbild" },
-  { src: heroPizza, name: "hero-pizza.jpg", used: "Start + Molkom hero" },
+  { src: heroPizza, name: "hero-pizza.jpg", used: "Startsidan — pizzabild" },
   { src: roney, name: "roney.png", used: "Startsidan — citat" },
   { src: teamRoney, name: "team-roney.jpg", used: "Team / Om oss" },
   { src: teamGabriel, name: "team-gabriel.jpg", used: "Team / Om oss" },
