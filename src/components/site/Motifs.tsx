@@ -1,10 +1,7 @@
 /**
  * Decorative SVG motifs — subtle background watermarks.
- * Foxes for the bistro, pizza slices for Molkom, plates/cutlery/glasses
- * as the shared "bindväv" between both venues.
- *
- * All motifs render via currentColor so they inherit text color and can be
- * dimmed with Tailwind opacity utilities (e.g. `text-primary/[0.05]`).
+ * Foxes för bistron, pizza-skivor för pizzasektionen, bestick/glas som delad väv.
+ * Allt ritas via currentColor så motiven ärver textfärgen.
  */
 
 type MotifProps = { className?: string };
