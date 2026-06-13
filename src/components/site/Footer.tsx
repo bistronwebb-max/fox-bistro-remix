@@ -44,6 +44,7 @@ export function Footer() {
             <ul className="mt-3 space-y-2 text-sm text-background/90">
               <li><Link to="/meny" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Meny</Link></li>
               <li><Link to="/catering" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Catering</Link></li>
+              <li><Link to="/galleri" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Galleri</Link></li>
               <li><Link to="/om-oss" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Om oss</Link></li>
               <li><Link to="/kontakta-oss" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Kontakt</Link></li>
               <li className="pt-2"><Link to="/faq" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">FAQ</Link></li>
