@@ -19,7 +19,9 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-foreground/10 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         <Link to="/" aria-label={`${RAVEN.name} — hem`} className="flex items-center gap-2">
-          <img src={logo} alt="" className="h-11 w-auto" />
+          <span className="inline-flex items-center justify-center rounded-xl bg-foreground p-2">
+            <img src={logo} alt="" className="h-9 w-auto" />
+          </span>
           <span className="sr-only">{RAVEN.name}</span>
         </Link>
         <nav aria-label="Primär navigation" className="hidden lg:flex items-center gap-9">
