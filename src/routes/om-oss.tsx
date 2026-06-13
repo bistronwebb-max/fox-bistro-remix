@@ -4,8 +4,6 @@ import { Footer } from "@/components/site/Footer";
 import { RAVEN } from "@/lib/locations";
 import teamRoney from "@/assets/scraped/team-roney.jpg";
 import teamMariette from "@/assets/mariette-bar.png.asset.json";
-import teamJohan from "@/assets/team-johan.png.asset.json";
-import barInterior from "@/assets/bar-interior.jpg.asset.json";
 import interior from "@/assets/scraped/hero-2.jpg";
 
 export const Route = createFileRoute("/om-oss")({
@@ -49,14 +47,8 @@ function OmOssPage() {
           </div>
         </section>
 
-        <section className="relative bg-foreground text-background overflow-hidden">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-cover bg-center opacity-40"
-            style={{ backgroundImage: `url(${barInterior.url})` }}
-          />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/85 to-foreground/55" />
-          <div className="relative mx-auto max-w-6xl px-4 py-20 grid gap-12 lg:grid-cols-2">
+        <section className="bg-foreground text-background">
+          <div className="mx-auto max-w-6xl px-4 py-20 grid gap-12 lg:grid-cols-2">
             <div>
               <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-[var(--color-honey)]">Tradition & kvalitet</p>
               <h2 className="mt-3 font-heading text-3xl md:text-4xl tracking-[-0.02em]">Det lokala jordbruket på tallriken.</h2>
@@ -90,11 +82,10 @@ function OmOssPage() {
               Ett litet, stadigt team — från köket till baren. Säg hej när du kommer in.
             </p>
           </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 max-w-3xl">
             {[
               { img: teamRoney, name: "Roney Saad", role: "Grundare & kock" },
               { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef" },
-              { img: teamJohan.url, name: "Johan", role: "Kock" },
             ].map((p) => (
               <figure key={p.name}>
                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[color-mix(in_oklab,var(--foreground)_8%,var(--background))]">
