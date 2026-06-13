@@ -29,12 +29,12 @@ function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1">
+      <main id="content" className="flex-1">
         <section className="bg-foreground text-background">
           <div className="mx-auto max-w-5xl px-4 py-14 md:py-20">
             <p className="font-script text-3xl text-primary">Hör av dig</p>
             <h1 className="mt-1 text-4xl md:text-5xl font-extrabold">Kontakta {RAVEN.name}</h1>
-            <p className="mt-4 max-w-2xl opacity-85">
+            <p className="mt-4 max-w-2xl text-background">
               Har du frågor eller funderingar? Vi svarar oftast inom 24 timmar. Är det brådskande — ring oss direkt.
             </p>
           </div>
@@ -43,13 +43,13 @@ function ContactPage() {
         <section className="mx-auto max-w-6xl px-4 py-16 grid gap-12 lg:grid-cols-2">
           <div className="space-y-6">
             {items.map(({ Icon, label, value, href }) => (
-              <a key={label} href={href} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 hover:border-primary transition">
+              <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 hover:border-primary transition min-h-16">
                 <span className="grid h-12 w-12 place-items-center rounded-full bg-primary/10 text-primary">
                   <Icon size={22} />
                 </span>
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-muted-foreground">{label}</p>
-                  <p className="text-lg font-semibold">{value}</p>
+                  <p className="text-xs uppercase tracking-wide font-semibold text-foreground/80">{label}</p>
+                  <p className="text-lg font-semibold text-foreground">{value}</p>
                 </div>
               </a>
             ))}
@@ -58,7 +58,7 @@ function ContactPage() {
                 <Clock size={20} />
                 <p className="text-xs uppercase tracking-wide font-semibold">Öppettider</p>
               </div>
-              <p className="mt-3 text-sm">{RAVEN.hoursLong}</p>
+              <p className="mt-3 text-base text-foreground">{RAVEN.hoursLong}</p>
             </div>
           </div>
 
@@ -75,14 +75,23 @@ function ContactPage() {
             }}
           >
             <h2 className="text-2xl font-bold">Skicka ett meddelande</h2>
-            <p className="text-xs text-muted-foreground">Går till {RAVEN.email}</p>
-            <input required name="name" placeholder="För- och efternamn" className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm" />
-            <input required name="email" type="email" placeholder="E-post" className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm" />
-            <textarea required name="msg" rows={6} placeholder="Meddelande" className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm" />
-            <button type="submit" className="w-full rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground hover:opacity-90">
+            <p className="text-sm text-muted-foreground">Går till {RAVEN.email}</p>
+            <label className="block">
+              <span className="text-sm font-semibold">För- och efternamn</span>
+              <input required name="name" autoComplete="name" aria-required="true" className="mt-1 w-full rounded-md border border-input bg-background px-3 py-3 text-base" />
+            </label>
+            <label className="block">
+              <span className="text-sm font-semibold">E-post</span>
+              <input required name="email" type="email" autoComplete="email" aria-required="true" className="mt-1 w-full rounded-md border border-input bg-background px-3 py-3 text-base" />
+            </label>
+            <label className="block">
+              <span className="text-sm font-semibold">Meddelande</span>
+              <textarea required name="msg" rows={6} aria-required="true" className="mt-1 w-full rounded-md border border-input bg-background px-3 py-3 text-base" />
+            </label>
+            <button type="submit" className="w-full rounded-full bg-primary py-3.5 text-base font-semibold text-primary-foreground hover:opacity-90 min-h-12">
               Skicka meddelande
             </button>
-            <p className="text-xs text-muted-foreground">Meddelandet öppnas i din e-postklient.</p>
+            <p className="text-sm text-muted-foreground">Meddelandet öppnas i din e-postklient.</p>
           </form>
         </section>
 

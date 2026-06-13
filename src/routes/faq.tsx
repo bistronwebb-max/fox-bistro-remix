@@ -31,17 +31,17 @@ function FAQPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 mx-auto max-w-3xl px-4 py-16">
+      <main id="content" className="flex-1 mx-auto max-w-3xl px-4 py-16">
         <p className="font-script text-3xl text-primary">Vanliga frågor</p>
         <h1 className="mt-1 text-4xl md:text-5xl font-extrabold">FAQ</h1>
         <div className="mt-10 space-y-6">
           {faqs.map((f) => (
             <details key={f.q} className="group rounded-2xl border border-border bg-card p-5">
-              <summary className="cursor-pointer text-lg font-semibold marker:hidden flex justify-between items-center">
+              <summary className="cursor-pointer text-lg font-semibold marker:hidden flex justify-between items-center min-h-12">
                 {f.q}
                 <span className="text-primary transition group-open:rotate-45 text-2xl">+</span>
               </summary>
-              <p className="mt-3 leading-relaxed text-muted-foreground">{f.a}</p>
+              <p className="mt-3 leading-relaxed text-foreground">{f.a}</p>
             </details>
           ))}
         </div>

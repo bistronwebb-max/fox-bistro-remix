@@ -20,7 +20,7 @@ function PrivacyPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 mx-auto max-w-3xl px-4 py-16 leading-relaxed">
+      <main id="content" className="flex-1 mx-auto max-w-3xl px-4 py-16 leading-relaxed">
         <p className="font-script text-3xl text-primary">GDPR & privacy</p>
         <h1 className="mt-1 text-4xl md:text-5xl font-extrabold">Integritetspolicy</h1>
         <p className="mt-4 text-sm text-muted-foreground">Senast uppdaterad: {new Date().toLocaleDateString("sv-SE")}</p>
