@@ -62,7 +62,7 @@ function CateringPage() {
         {/* HERO */}
         <section className="relative overflow-hidden">
           <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,color-mix(in_oklab,var(--honey)_22%,transparent),transparent_60%)]" />
-          <div className="relative mx-auto max-w-7xl px-4 pt-12 md:pt-20 pb-20 grid gap-12 lg:grid-cols-12 items-end">
+          <div className="relative mx-auto max-w-7xl px-4 pt-12 md:pt-20 pb-20 grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <p className="font-script text-5xl md:text-6xl text-primary leading-none">för era tillfällen</p>
               <h1 className="mt-3 font-heading text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.03em] text-balance">
