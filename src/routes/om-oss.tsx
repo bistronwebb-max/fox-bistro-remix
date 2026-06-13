@@ -85,7 +85,7 @@ function OmOssPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { img: teamRoney, name: "Roney Saad", role: "Grundare & kock" },
-              { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef & medägare" },
+              { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef" },
             ].map((p) => (
               <figure key={p.name}>
                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[color-mix(in_oklab,var(--foreground)_8%,var(--background))]">
