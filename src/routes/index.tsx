@@ -9,7 +9,7 @@ import kebabIcon from "@/assets/scraped/kebab-icon.png";
 import swishVanlig from "@/assets/scraped/swish-vanlig.png";
 import swishEvent from "@/assets/scraped/swish-event.png";
 import teamRoney from "@/assets/scraped/team-roney.jpg";
-import teamGabriel from "@/assets/scraped/team-gabriel.jpg";
+import teamMariette from "@/assets/mariette-bar.png.asset.json";
 import { RAVEN } from "@/lib/locations";
 import { ArrowUpRight, Phone, MapPin, Clock } from "lucide-react";
 
@@ -314,19 +314,18 @@ function HomePage() {
             <div className="lg:col-span-7">
               <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Kapitel V — Människorna</p>
               <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
-                De som lagar maten.
+                Vi som ansvarar för din mat &amp; dryck.
               </h2>
             </div>
             <p className="lg:col-span-5 text-base text-foreground/70 max-w-md">
-              Ett litet, stadigt team som lagar varje rätt från grunden.
+              Ett litet, stadigt team — från köket till baren.
             </p>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { img: teamRoney, name: "Roney Saad", role: "Grundare &amp; kock" },
-              { img: teamGabriel, name: "Gabriel Al Ajjie", role: "Kock" },
-              { img: null, name: "Mariette", role: "Värdinna &amp; medägare" },
+              { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef &amp; medägare" },
             ].map((p) => (
               <figure key={p.name} className="group">
                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[color-mix(in_oklab,var(--foreground)_8%,var(--background))]">
