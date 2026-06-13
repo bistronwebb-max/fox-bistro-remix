@@ -4,7 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { RAVEN } from "@/lib/locations";
 import teamRoney from "@/assets/scraped/team-roney.jpg";
 import teamMariette from "@/assets/mariette-bar.png.asset.json";
-import interior from "@/assets/scraped/hero-2.jpg";
+import interiorAsset from "@/assets/scraped/interior-1.jpg.asset.json";
 
 export const Route = createFileRoute("/om-oss")({
   head: () => ({
@@ -42,7 +42,7 @@ function OmOssPage() {
           </div>
           <div className="lg:col-span-5">
             <div className="aspect-[4/5] overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-30px_rgba(27,20,17,0.35)]">
-              <img src={interior} alt="Stämning i Rävens Bistro" className="h-full w-full object-cover" />
+              <img src={interiorAsset.url} alt="Interiör på Rävens Bistro i Väse" loading="lazy" className="h-full w-full object-cover" />
             </div>
           </div>
         </section>

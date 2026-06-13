@@ -3,7 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { RAVEN } from "@/lib/locations";
 import { ArrowUpRight, Mail, Phone } from "lucide-react";
-import cateringImg from "@/assets/scraped/hero-2.jpg";
+import cateringAsset from "@/assets/scraped/catering-bg-1.jpg.asset.json";
 
 export const Route = createFileRoute("/catering")({
   head: () => ({
@@ -89,7 +89,7 @@ function CateringPage() {
             </div>
             <div className="lg:col-span-5">
               <div className="aspect-[4/5] overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-30px_rgba(27,20,17,0.35)]">
-                <img src={cateringImg} alt="Catering från Rävens Bistro — uppdukat bord" className="h-full w-full object-cover" />
+                <img src={cateringAsset.url} alt="Catering från Rävens Bistro — uppdukat bord" loading="lazy" className="h-full w-full object-cover" />
               </div>
             </div>
           </div>

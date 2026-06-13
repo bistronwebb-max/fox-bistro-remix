@@ -5,6 +5,7 @@ import { Link } from "@tanstack/react-router";
 import scraped from "@/data/scraped.json";
 import { useMemo } from "react";
 import { RAVEN } from "@/lib/locations";
+import pizzaHeroAsset from "@/assets/scraped/pizza-hero.jpg.asset.json";
 
 export const Route = createFileRoute("/meny")({
   head: () => ({
@@ -93,18 +94,27 @@ function MenyPage() {
         {/* HERO */}
         <section className="relative overflow-hidden">
           <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,color-mix(in_oklab,var(--honey)_22%,transparent),transparent_60%)]" />
-          <div className="relative mx-auto max-w-7xl px-4 pt-12 md:pt-20 pb-12">
-            <p className="font-script text-5xl md:text-6xl text-primary leading-none">vår meny</p>
-            <h1 className="mt-3 font-heading text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.03em] text-balance">
-              Allt vi serverar
-              <br />
-              <span className="italic text-primary">i bistron.</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground">
-              Pizza ur vedugnen, husman med själ, kebab från eget recept — och mer
-              därtill. Allergier eller önskemål? Fråga oss alltid, vi har bland annat
-              glutenfri surdeg som pizzabotten.
-            </p>
+          <div className="relative mx-auto max-w-7xl px-4 pt-12 md:pt-20 pb-12 grid gap-10 lg:grid-cols-12 items-end">
+            <div className="lg:col-span-7">
+              <p className="font-script text-5xl md:text-6xl text-primary leading-none">vår meny</p>
+              <h1 className="mt-3 font-heading text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.03em] text-balance">
+                Allt vi serverar
+                <br />
+                <span className="italic text-primary">i bistron.</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground">
+                Pizza ur vedugnen, husman med själ, kebab från eget recept — och mer
+                därtill. Allergier eller önskemål? Fråga oss alltid, vi har bland annat
+                glutenfri surdeg som pizzabotten.
+              </p>
+            </div>
+            <div className="lg:col-span-5">
+              <div className="aspect-[4/5] overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-30px_rgba(27,20,17,0.35)]">
+                <img src={pizzaHeroAsset.url} alt="Vedugnsbakad pizza från Rävens Bistro" className="h-full w-full object-cover" />
+              </div>
+            </div>
+          </div>
+          <div className="relative mx-auto max-w-7xl px-4 pb-12">
 
             {/* Snabbnav */}
             <nav aria-label="Hoppa till sektion" className="mt-10 flex flex-wrap gap-2">
