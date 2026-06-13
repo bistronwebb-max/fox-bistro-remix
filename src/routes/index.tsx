@@ -394,7 +394,7 @@ function HomePage() {
 
         {/* ───────── DETAILS: Allergies + Swish ───────── */}
         <section className="bg-[color-mix(in_oklab,var(--foreground)_4%,var(--background))]">
-          <div className="mx-auto max-w-7xl px-4 py-24 grid gap-12 lg:grid-cols-12">
+          <div className="mx-auto max-w-7xl px-4 py-24 grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Det praktiska</p>
               <h2 className="mt-3 font-heading text-4xl md:text-5xl leading-[1.05] tracking-[-0.02em]">Allergier &amp; särskilda önskemål</h2>

@@ -15,7 +15,7 @@ export function Footer() {
     <footer className="mt-20 text-background">
       <Marquee phrases={defaultPhrases} />
       <div className="bg-foreground">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <img src={logo} alt={RAVEN.name} className="h-16 w-auto brightness-0 invert" />
             <p className="mt-4 max-w-sm text-sm text-background/90">
@@ -47,7 +47,13 @@ export function Footer() {
               <li><Link to="/galleri" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Galleri</Link></li>
               <li><Link to="/om-oss" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Om oss</Link></li>
               <li><Link to="/kontakta-oss" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Kontakt</Link></li>
-              <li className="pt-2"><Link to="/faq" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">FAQ</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-base font-semibold">Information</h3>
+            <ul className="mt-3 space-y-2 text-sm text-background/90">
+              <li><Link to="/faq" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">FAQ</Link></li>
               <li><Link to="/villkor" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Allmänna villkor</Link></li>
               <li><Link to="/integritetspolicy" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Integritetspolicy</Link></li>
             </ul>
