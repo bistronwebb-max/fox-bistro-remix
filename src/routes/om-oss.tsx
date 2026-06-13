@@ -25,7 +25,7 @@ function OmOssPage() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Header />
       <main id="content" className="flex-1">
-        <section className="mx-auto max-w-7xl px-4 pt-12 md:pt-20 pb-16 grid gap-12 lg:grid-cols-12 items-end">
+        <section className="mx-auto max-w-7xl px-4 pt-12 md:pt-20 pb-16 grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7">
             <p className="font-script text-5xl text-primary leading-none">vår historia</p>
             <h1 className="mt-3 font-heading text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.03em] text-balance">
