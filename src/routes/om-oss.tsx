@@ -5,6 +5,7 @@ import { RAVEN } from "@/lib/locations";
 import teamRoney from "@/assets/scraped/team-roney.jpg";
 import teamMariette from "@/assets/mariette-bar.png.asset.json";
 import interiorAsset from "@/assets/scraped/interior-1.jpg.asset.json";
+import foodIg04 from "@/assets/scraped/food-ig-04.jpg.asset.json";
 
 export const Route = createFileRoute("/om-oss")({
   head: () => ({
@@ -82,14 +83,15 @@ function OmOssPage() {
               Ett litet, stadigt team — från köket till baren. Säg hej när du kommer in.
             </p>
           </div>
-          <div className="grid gap-8 sm:grid-cols-2 max-w-3xl">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { img: teamRoney, name: "Roney Saad", role: "Grundare & kock" },
-              { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef" },
+              { img: teamRoney, name: "Roney Saad", role: "Grundare & kock", alt: "Porträtt av Roney Saad, grundare och kock" },
+              { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef", alt: "Porträtt av Mariette Lindberg, barchef" },
+              { img: foodIg04.url, name: "Lyxat & lyxpizza", role: "Du beställer — vi serverar", alt: "Lyxig pizza från Rävens Bistro" },
             ].map((p) => (
               <figure key={p.name}>
                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[color-mix(in_oklab,var(--foreground)_8%,var(--background))]">
-                  <img src={p.img} alt={`Porträtt av ${p.name}, ${p.role.toLowerCase()}`} className="h-full w-full object-cover" />
+                  <img src={p.img} alt={p.alt} className="h-full w-full object-cover" />
                 </div>
                 <figcaption className="mt-5">
                   <p className="font-heading text-2xl tracking-[-0.01em]">{p.name}</p>
