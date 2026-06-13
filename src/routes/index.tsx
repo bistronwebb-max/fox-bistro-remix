@@ -39,14 +39,14 @@ function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Header />
-      <main className="flex-1">
+      <main id="content" className="flex-1">
         {/* ───────── HERO ───────── */}
         <section className="relative overflow-hidden">
           {/* warm wash backdrop */}
           <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,color-mix(in_oklab,var(--honey)_25%,transparent),transparent_60%)]" />
           <div className="relative mx-auto max-w-7xl px-4 pt-10 md:pt-16 pb-20">
             {/* Eyebrow row */}
-            <div className="flex flex-wrap items-center justify-between gap-4 text-[0.7rem] uppercase tracking-[0.28em] text-foreground/60">
+            <div className="flex flex-wrap items-center justify-between gap-4 text-[0.7rem] uppercase tracking-[0.28em] font-semibold text-foreground/85">
               <span className="inline-flex items-center gap-2">
                 <span className="h-px w-8 bg-foreground/30" /> Etablerad {RAVEN.since} · Väse
               </span>
@@ -66,21 +66,21 @@ function HomePage() {
                     Bistro
                   </span>
                 </h1>
-                <p className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-pretty text-foreground/80">
+                <p className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-pretty text-foreground">
                   Pizza ur vedugnen, husman med själ och à la carte med säsongens bästa —
                   serverat i Väse, en kort biltur från Karlstad.
                 </p>
                 <div className="mt-9 flex flex-wrap items-center gap-4">
                   <a
                     href="#boka"
-                    className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background hover:bg-primary transition-colors"
+                    className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12"
                   >
                     Boka bord
                     <ArrowUpRight size={16} className="transition-transform group-hover:rotate-45" />
                   </a>
                   <Link
                     to="/meny"
-                    className="link-underline text-sm font-medium tracking-wide text-foreground/80 hover:text-foreground"
+                    className="link-underline text-base font-semibold tracking-wide text-foreground"
                   >
                     Läs hela menyn
                   </Link>
@@ -95,7 +95,7 @@ function HomePage() {
                 <div className="absolute -bottom-10 -left-10 hidden md:block w-44 aspect-[4/5] overflow-hidden rounded-[1.5rem] ring-8 ring-background">
                   <img src={hero2} alt="Stämning i bistron" className="h-full w-full object-cover" />
                 </div>
-                <div className="absolute -top-6 -right-4 rounded-full bg-[var(--color-honey)] text-foreground px-5 py-3 text-[0.65rem] uppercase tracking-[0.25em] font-medium shadow-md rotate-3">
+                <div className="absolute -top-6 -right-4 rounded-full bg-[var(--color-honey)] text-foreground px-5 py-3 text-[0.7rem] uppercase tracking-[0.25em] font-bold shadow-md rotate-3">
                   Sedan {RAVEN.since}
                 </div>
               </div>
@@ -112,7 +112,7 @@ function HomePage() {
                   <div className="flex items-start gap-4">
                     <Icon size={20} className="mt-1 text-primary shrink-0" />
                     <div className="min-w-0">
-                      <p className="text-[0.65rem] uppercase tracking-[0.25em] text-foreground/50">{label}</p>
+                      <p className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-foreground/80">{label}</p>
                       <p className="mt-1 font-heading text-lg leading-snug">{value}</p>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ function HomePage() {
         <section className="bg-foreground text-background">
           <div className="mx-auto max-w-6xl px-4 py-24 md:py-32 grid gap-12 lg:grid-cols-12 items-center">
             <div className="lg:col-span-7">
-              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-background/50">Kapitel I — Familjen</p>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-[var(--color-honey)]">Kapitel I — Familjen</p>
               <blockquote className="mt-6 font-heading text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] text-balance">
                 <span className="text-primary">"</span>
                 Vi vill att du går härifrån med samma känsla som efter en
@@ -139,10 +139,10 @@ function HomePage() {
                 <span className="text-primary">"</span>
               </blockquote>
               <p className="mt-8 font-script text-4xl text-[var(--color-honey)]">Roney &amp; Mariette</p>
-              <p className="text-xs uppercase tracking-[0.3em] text-background/60 mt-1">Värdpar · Rävens Bistro</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-background/85 mt-1">Värdpar · Rävens Bistro</p>
               <Link
                 to="/om-oss"
-                className="mt-10 link-underline inline-block text-sm font-medium tracking-wide text-background/80 hover:text-background"
+                className="mt-10 link-underline inline-block text-base font-semibold tracking-wide text-background"
               >
                 Läs hela vår historia
               </Link>
@@ -157,7 +157,7 @@ function HomePage() {
                 ].map((s) => (
                   <div key={s.label} className="rounded-2xl border border-background/15 p-6">
                     <p className="font-heading text-4xl text-[var(--color-honey)]">{s.value}</p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-background/60">{s.label}</p>
+                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-background/85">{s.label}</p>
                   </div>
                 ))}
               </div>
@@ -170,12 +170,12 @@ function HomePage() {
           <div className="mx-auto max-w-7xl px-4 py-24">
             <div className="grid gap-6 lg:grid-cols-12 items-end mb-14">
               <div className="lg:col-span-7">
-                <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Kapitel II — Köket</p>
+                <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Kapitel II — Köket</p>
                 <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
                   Tre vägar in i menyn.
                 </h2>
               </div>
-              <p className="lg:col-span-5 text-base text-foreground/70 max-w-md">
+              <p className="lg:col-span-5 text-base text-foreground/85 max-w-md">
                 Pizza ur vedugnen, klassisk husman och kebab/pita från eget recept — välj
                 ditt humör och bläddra vidare till hela menyn.
               </p>
@@ -192,12 +192,12 @@ function HomePage() {
                   className="group relative rounded-[1.75rem] border border-foreground/10 bg-card p-8 transition hover:border-primary/40 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(27,20,17,0.25)]"
                 >
                   <div className="flex items-start justify-between">
-                    <span className="font-heading text-sm tracking-[0.2em] text-foreground/40">{c.num}</span>
+                    <span className="font-heading text-sm tracking-[0.2em] text-foreground/60">{c.num}</span>
                     <ArrowUpRight size={18} className="text-foreground/40 transition group-hover:text-primary group-hover:rotate-45" />
                   </div>
                   <img src={c.icon} alt="" className="mt-12 h-20 w-auto opacity-90" />
                   <h3 className="mt-8 font-heading text-3xl tracking-[-0.02em]">{c.title}</h3>
-                  <p className="mt-2 text-sm text-foreground/65 leading-relaxed">{c.desc}</p>
+                  <p className="mt-2 text-base text-foreground/85 leading-relaxed">{c.desc}</p>
                 </Link>
               ))}
             </div>
@@ -209,7 +209,7 @@ function HomePage() {
           <div className="mx-auto max-w-7xl px-4 py-24">
             <div className="grid gap-8 lg:grid-cols-12 items-end">
               <div className="lg:col-span-6">
-                <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Kapitel III — Vardagen</p>
+                <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Kapitel III — Vardagen</p>
                 <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
                   Veckans lunch
                   <br />
@@ -217,22 +217,22 @@ function HomePage() {
                 </h2>
               </div>
               <div className="lg:col-span-6 lg:text-right">
-                <p className="text-sm text-foreground/70 max-w-md lg:ml-auto">
+                <p className="text-base text-foreground/85 max-w-md lg:ml-auto">
                   Inklusive salladsbuffé, dryck &amp; kaffe. Pensionärsrabatt 14 kr.
                   Serveras måndag–fredag.
                 </p>
               </div>
             </div>
 
-            <ul className="mt-14 divide-y divide-foreground/15">
+            <ul className="mt-14 divide-y divide-foreground/25">
               {lunchMenu.map((d, i) => (
                 <li
                   key={d.day}
                   className="grid grid-cols-[3rem_minmax(0,9rem)_1fr_auto] items-center gap-4 md:gap-8 py-6"
                 >
-                  <span className="font-heading text-sm text-foreground/40 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-heading text-sm text-foreground/70 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-heading text-xl md:text-2xl tracking-[-0.01em]">{d.day}</span>
-                  <span className="text-sm md:text-base text-foreground/75 leading-relaxed">{d.dishes}</span>
+                  <span className="text-sm md:text-base text-foreground leading-relaxed">{d.dishes}</span>
                   <span className="font-heading text-lg md:text-xl text-primary tabular-nums">139:-</span>
                 </li>
               ))}
@@ -244,28 +244,28 @@ function HomePage() {
         <section id="boka" className="relative bg-foreground text-background">
           <div className="mx-auto max-w-7xl px-4 py-24 grid gap-14 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-background/50">Kapitel IV — Välkommen</p>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-[var(--color-honey)]">Kapitel IV — Välkommen</p>
               <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
                 Boka ett bord
                 <br />
                 <span className="italic text-[var(--color-honey)]" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1, "opsz" 144' }}>hos oss.</span>
               </h2>
-              <p className="mt-6 text-background/75 leading-relaxed max-w-md">
+              <p className="mt-6 text-background leading-relaxed max-w-md">
                 Fyll i formuläret eller ring direkt. Vi bekräftar inom kort.
                 Större sällskap, evenemang och catering — använd e-post.
               </p>
               <dl className="mt-10 space-y-4">
                 <div className="flex items-baseline gap-4">
-                  <dt className="text-[0.65rem] uppercase tracking-[0.25em] text-background/50 w-20">Telefon</dt>
+                  <dt className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-background/85 w-20">Telefon</dt>
                   <dd><a href={RAVEN.phone.href} className="font-heading text-2xl text-[var(--color-honey)] hover:text-background transition-colors">{RAVEN.phone.label}</a></dd>
                 </div>
                 <div className="flex items-baseline gap-4">
-                  <dt className="text-[0.65rem] uppercase tracking-[0.25em] text-background/50 w-20">Event</dt>
+                  <dt className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-background/85 w-20">Event</dt>
                   <dd><a href={`mailto:${RAVEN.bookingEmail}`} className="font-heading text-xl text-background hover:text-[var(--color-honey)] transition-colors">{RAVEN.bookingEmail}</a></dd>
                 </div>
                 <div className="flex items-baseline gap-4">
-                  <dt className="text-[0.65rem] uppercase tracking-[0.25em] text-background/50 w-20">Tider</dt>
-                  <dd className="text-sm text-background/80">{RAVEN.hoursLong}</dd>
+                  <dt className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-background/85 w-20">Tider</dt>
+                  <dd className="text-sm text-background">{RAVEN.hoursLong}</dd>
                 </div>
               </dl>
             </div>
@@ -285,25 +285,27 @@ function HomePage() {
             >
               <p className="font-heading text-2xl tracking-[-0.01em]">Förfrågan</p>
               <div className="grid gap-4 sm:grid-cols-2">
-                <FormInput name="name" placeholder="För- &amp; efternamn" required />
-                <FormInput name="phone" type="tel" placeholder="Telefonnummer" required />
-                <FormInput name="guests" type="number" min="1" placeholder="Antal gäster" required />
-                <FormInput name="when" type="datetime-local" required />
+                <LabeledInput label="För- och efternamn" name="name" autoComplete="name" required />
+                <LabeledInput label="Telefonnummer" name="phone" type="tel" autoComplete="tel" required />
+                <LabeledInput label="Antal gäster" name="guests" type="number" min="1" required />
+                <LabeledInput label="Datum och tid" name="when" type="datetime-local" required />
               </div>
-              <textarea
-                name="msg"
-                rows={3}
-                placeholder="Önskemål (valfritt)"
-                className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:border-primary transition"
-              />
+              <label className="block">
+                <span className="text-sm font-semibold text-foreground">Önskemål (valfritt)</span>
+                <textarea
+                  name="msg"
+                  rows={3}
+                  className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus:outline-none focus:border-primary transition"
+                />
+              </label>
               <button
                 type="submit"
-                className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background hover:bg-primary transition-colors"
+                className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12"
               >
                 Skicka bokningsförfrågan
                 <ArrowUpRight size={16} className="transition-transform group-hover:rotate-45" />
               </button>
-              <p className="text-xs text-muted-foreground">Bokningen öppnas i din e-postklient.</p>
+              <p className="text-sm text-muted-foreground">Bokningen öppnas i din e-postklient.</p>
             </form>
           </div>
         </section>
@@ -312,12 +314,12 @@ function HomePage() {
         <section className="mx-auto max-w-7xl px-4 py-24">
           <div className="grid gap-6 lg:grid-cols-12 items-end mb-14">
             <div className="lg:col-span-7">
-              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Kapitel V — Människorna</p>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Kapitel V — Människorna</p>
               <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
                 Vi som ansvarar för din mat &amp; dryck.
               </h2>
             </div>
-            <p className="lg:col-span-5 text-base text-foreground/70 max-w-md">
+            <p className="lg:col-span-5 text-base text-foreground/85 max-w-md">
               Ett litet, stadigt team — från köket till baren.
             </p>
           </div>
@@ -343,7 +345,7 @@ function HomePage() {
                 </div>
                 <figcaption className="mt-5">
                   <p className="font-heading text-2xl tracking-[-0.01em]">{p.name}</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-foreground/55 mt-1" dangerouslySetInnerHTML={{ __html: p.role }} />
+                  <p className="text-xs uppercase tracking-[0.2em] font-semibold text-foreground/80 mt-1" dangerouslySetInnerHTML={{ __html: p.role }} />
                 </figcaption>
               </figure>
             ))}
@@ -354,26 +356,26 @@ function HomePage() {
         <section className="bg-[color-mix(in_oklab,var(--foreground)_4%,var(--background))]">
           <div className="mx-auto max-w-7xl px-4 py-24 grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Det praktiska</p>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Det praktiska</p>
               <h2 className="mt-3 font-heading text-4xl md:text-5xl leading-[1.05] tracking-[-0.02em]">Allergier &amp; särskilda önskemål</h2>
-              <p className="mt-5 max-w-xl text-foreground/75 leading-relaxed">
+              <p className="mt-5 max-w-xl text-foreground leading-relaxed">
                 Fråga oss alltid — vi har glutenfri surdeg som pizzabotten och hjälper
                 gärna till med övriga allergier. Vill du veta var vårt kött kommer ifrån?
                 Fråga oss på plats så berättar vi om dagens råvaror.
               </p>
             </div>
             <div className="lg:col-span-5">
-              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">Betalning</p>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Betalning</p>
               <h3 className="mt-3 font-heading text-2xl tracking-[-0.01em]">Swish</h3>
-              <p className="mt-2 text-sm text-foreground/70">Vänster = vanlig betalning. Höger = under evenemang.</p>
+              <p className="mt-2 text-base text-foreground/85">Vänster = vanlig betalning. Höger = under evenemang.</p>
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <figure className="rounded-2xl bg-card p-4 border border-foreground/10">
                   <img src={swishVanlig} alt="Swish — vanlig betalning" className="w-full" />
-                  <figcaption className="mt-3 text-xs uppercase tracking-[0.2em] text-foreground/60 text-center">Vanlig</figcaption>
+                  <figcaption className="mt-3 text-xs uppercase tracking-[0.2em] font-semibold text-foreground/85 text-center">Vanlig</figcaption>
                 </figure>
                 <figure className="rounded-2xl bg-card p-4 border border-foreground/10">
                   <img src={swishEvent} alt="Swish — evenemang" className="w-full" />
-                  <figcaption className="mt-3 text-xs uppercase tracking-[0.2em] text-foreground/60 text-center">Evenemang</figcaption>
+                  <figcaption className="mt-3 text-xs uppercase tracking-[0.2em] font-semibold text-foreground/85 text-center">Evenemang</figcaption>
                 </figure>
               </div>
             </div>
@@ -385,11 +387,17 @@ function HomePage() {
   );
 }
 
-function FormInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
+function LabeledInput({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
+  const id = `f-${props.name}`;
   return (
-    <input
-      {...props}
-      className="rounded-xl border border-input bg-background px-4 py-3 text-sm placeholder:text-foreground/50 focus:outline-none focus:border-primary transition"
-    />
+    <label htmlFor={id} className="block">
+      <span className="text-sm font-semibold text-foreground">{label}</span>
+      <input
+        id={id}
+        {...props}
+        aria-required={props.required ? "true" : undefined}
+        className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-base placeholder:text-foreground/60 focus:outline-none focus:border-primary transition"
+      />
+    </label>
   );
 }
