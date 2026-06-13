@@ -250,6 +250,36 @@ function HomePage() {
         </section>
 
         {/* ───────── BOOKING ───────── */}
+        {/* ───────── SMYGTITT — strip of food images ───────── */}
+        <section aria-labelledby="smygtitt" className="overflow-hidden border-y border-foreground/10 bg-background">
+          <div className="mx-auto max-w-7xl px-4 pt-16 pb-8 flex items-end justify-between gap-6">
+            <div>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Ur köket</p>
+              <h2 id="smygtitt" className="mt-2 font-heading text-3xl md:text-4xl tracking-[-0.02em]">En smygtitt.</h2>
+            </div>
+            <Link to="/galleri" className="link-underline text-sm font-semibold tracking-wide text-foreground whitespace-nowrap">
+              Fler bilder i galleriet →
+            </Link>
+          </div>
+          <div className="pb-16">
+            <div className="marquee-track">
+              {[...Array(2)].flatMap((_, dup) =>
+                [gFood1, gFood2, gFood3, gFood4, gFood5, gFood6, gFood7, gFood8].map((img, i) => (
+                  <span key={`${dup}-${i}`} className="inline-block shrink-0">
+                    <img
+                      src={img.url}
+                      alt=""
+                      loading="lazy"
+                      className="h-48 md:h-64 w-auto rounded-xl object-cover"
+                    />
+                  </span>
+                )),
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* ───────── BOOKING ───────── */}
         <section id="boka" className="relative bg-foreground text-background">
           <div className="mx-auto max-w-7xl px-4 py-24 grid gap-14 lg:grid-cols-12">
             <div className="lg:col-span-5">
