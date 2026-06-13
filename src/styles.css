@@ -83,7 +83,8 @@
   --secondary-foreground: oklch(0.18 0.020 45);
 
   --muted: oklch(0.91 0.015 80);
-  --muted-foreground: oklch(0.45 0.020 60);
+  /* Bumped darker for WCAG AA (4.5:1) mot ivory */
+  --muted-foreground: oklch(0.36 0.025 55);
 
   --accent: oklch(0.74 0.13 75);
   --accent-foreground: oklch(0.18 0.020 45);
@@ -120,6 +121,10 @@
   * {
     border-color: var(--color-border);
   }
+  html {
+    /* Bas-storlek upp en aning — bättre för äldre/synsvaga utan att rytmen tappas. */
+    font-size: 17px;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -127,6 +132,7 @@
     font-feature-settings: "ss01", "ss02", "cv01";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    line-height: 1.6;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
@@ -137,6 +143,32 @@
   .font-script {
     font-family: var(--font-script);
   }
+  /* Synlig fokusring (fox-röd, INTE default-blå) på allt interaktivt. */
+  :is(a, button, [role="button"], input, select, textarea, summary, details):focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* Skip-link — osynlig tills den får fokus via tab. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-120%);
+  background: var(--color-foreground);
+  color: var(--color-background);
+  padding: 0.875rem 1.25rem;
+  font-weight: 600;
+  z-index: 100;
+  border-radius: 0 0 0.75rem 0;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Editorial helpers */
