@@ -11,6 +11,14 @@ import swishVanlig from "@/assets/scraped/swish-vanlig.png";
 import swishEvent from "@/assets/scraped/swish-event.png";
 import teamRoney from "@/assets/scraped/team-roney.jpg";
 import teamMariette from "@/assets/mariette-bar.png.asset.json";
+import gFood1 from "@/assets/scraped/pizza-hero.jpg.asset.json";
+import gFood2 from "@/assets/scraped/food-ig-01.jpg.asset.json";
+import gFood3 from "@/assets/scraped/food-ig-02.jpg.asset.json";
+import gFood4 from "@/assets/scraped/food-ig-04.jpg.asset.json";
+import gFood5 from "@/assets/scraped/food-ig-05.jpg.asset.json";
+import gFood6 from "@/assets/scraped/food-ig-06.jpg.asset.json";
+import gFood7 from "@/assets/scraped/dinner.jpg.asset.json";
+import gFood8 from "@/assets/scraped/food-ig-08.jpg.asset.json";
 import { RAVEN } from "@/lib/locations";
 import { ArrowUpRight, Phone, MapPin, Clock } from "lucide-react";
 
