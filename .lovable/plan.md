@@ -1,86 +1,64 @@
-## Mål
+## Vad du faktiskt ser
 
-Två tydliga faser:
+"Spöket" på /catering är inte två sajter — det är den nya editoriella headern överst, och under den hela den gamla skrapade markdown-texten (som börjar med sin egen rubrik "Catering - Rävens Bistro" + en "Home / Catering"-brödsmula). Samma sak händer på /om-oss, /kontakta-oss, /meny och /faq — alla använder `MarkdownPage` som dumpar in `scraped.json` rakt av. Det är därför det känns som att gammal och ny sajt ligger ovanpå varandra.
 
-**Fas 1 — Städning.** Bort med allt Molkom-arv så koden bara handlar om Rävens Bistro i Väse. Inga "systerrestaurang"-spår, inga växla-ort-länkar, inga dubbla footer-kolumner.
+Och du har rätt om "Hem" vs "Rävens Bistro": navlänken HEM går redan till `/` som ÄR Rävens Bistro-landningen. Det är samma sida. Men eftersom undersidorna fortfarande spökar med den gamla layouten ser det ut som två olika sajter.
 
-**Fas 2 — Redesign.** Bygga Rävens Bistro så snyggt att Roney kan visa det för vem som helst. Vi följer redesign-ritualen: först låser vi smaken (färg, typografi, layout) med ett visuellt val, sen genererar vi tre färdiga riktningar att välja mellan, sen bygger jag den valda. Inget gissande.
+## Vad jag ska göra
 
-Om Firecrawl: vi behöver inte skrapa om nu. Det vi redan har i `src/data/scraped.json` (meny, om-oss, kontakt) räcker som textbas. Firecrawl-kopplingen ligger ändå kvar och kan användas senare när Roney vill uppdatera meny eller priser från sin sajt.
+### 1. Städa undersidorna — `MarkdownPage` pensioneras
 
----
+Den dumpar oredigerad skrapad text och drar in den gamla sajtens rubrik + brödsmula. Den ersätts med riktiga, kurerade route-komponenter i samma editoriella språk som hem-sidan.
 
-## Fas 1 — Städning (mekanisk, ingen designdiskussion)
+- **`/catering`** — skrivs om till en egen sida: hero (samma stil som hem), tre kort (Buffé · Smörgåstårta · Kallskuret), en "så funkar det"-rad, kontaktblock med Boka@-mejl och telefon.
+- **`/om-oss`** — hero + två kolumner brödtext (vår historia, vår filosofi), team-rutnät (Roney, Mariette, övriga ni vill ha med).
+- **`/kontakta-oss`** — hero, kontakt­kort (telefon, mejl, adress, öppettider, kartlänk), och en kort bokningsförklaring som länkar till `#boka` på hem.
+- **`/meny`** — hero + sektioner (Pizza, À la carte, Kebab & pita, Drycker) i samma "editorial table"-stil som veckomenyn på hem.
+- **`/faq`** — hero + accordion (shadcn) med Väse-frågorna.
+- `MarkdownPage.tsx` raderas. `scraped.json` får ligga kvar som källmaterial men importeras inte längre direkt.
 
-### Filer som raderas
-- `src/routes/molkoms-pizzeria.tsx`
-- `src/data/oppna-fragor.md` (ersätts med ny Väse-version eller tas bort helt — se nedan)
+Efter det: ingen sida har en dubbel rubrik eller "Home / X"-brödsmula. En sajt, ett språk.
 
-### Filer som skalas ner
-- `src/lib/locations.ts` → reduceras till en `RAVEN` konstant (adress, telefon, mejl, öppettider, mapsUrl). `useActiveLocation` / `otherLocation` / `LOCATIONS` tas bort. Allt som importerar dem uppdateras att läsa direkt från konstanten.
-- `src/data/scraped.json` → nyckeln `"molkoms-pizzeria"` tas bort.
+### 2. Läsbarhet och kontrast (det här är inte kosmetik — det är hela poängen)
 
-### Filer som rensas från Molkom-referenser
-- `src/components/site/Header.tsx` — växla-ort-länken bort, telefon hårdkodas till Väse, navlogik förenklas (inga feature-flaggor — Väse har allt).
-- `src/components/site/Footer.tsx` — marquee-fraser, dubbel adresskolumn, `Du är hos…/Besök…`-knapparna och copyright bort. En ren Väse-footer.
-- `src/components/site/MarkdownPage.tsx` — den nedre dubbel-info-sektionen tas bort.
-- `src/routes/index.tsx` — "Vår pizzeria finns även i Molkom →"-länken och Molkom-meningen i lunchblocket bort.
-- `src/routes/om-oss.tsx`, `meny.tsx`, `kontakta-oss.tsx`, `catering.tsx`, `faq.tsx` — intros och `MarkdownPage`-text rensas från Molkom-omnämnanden.
-- `src/routes/villkor.tsx`, `integritetspolicy.tsx` — samma rensning.
-- `src/routes/sitemap[.]xml.ts` — `/molkoms-pizzeria` bort.
-- Alla `head().meta` (titel + og:title + og:description) byts från `"— Rävens Bistro & Molkoms Pizzeria"` till bara `"— Rävens Bistro"`.
+Inget vitt på beige. Inget ljust gult på beige. Allt brödtext-grått tas upp till WCAG AA (4.5:1) eller AAA (7:1) där det går.
 
-### Komponenter
-- `src/components/site/Motifs.tsx` — `variant="pizza"` (Molkom-motivet) kan ligga kvar eller tas bort. Förslag: behåll, men dokumentera som "pizza-motiv för pizzasektion på Väse", eftersom Väse också serverar pizza.
+- **Tokens i `src/styles.css`**: `--muted-foreground` mörknas tills den klarar 4.5:1 mot ivory. `--background/0.X`-utilityn på mörka sektioner sätts aldrig lägre än 0.75 för brödtext, 0.85 för kapitel-eyebrows.
+- **Hem-sidan**: små "ETABLERAD 2018 · VÄSE" och "NR 01 — SÄSONGEN 2026" lyfts från `text-foreground/60` till `text-foreground/85` + fetare vikt. Honungsgula priser/accenter byts till en mörkare honungston när de står på ljus bakgrund.
+- **Mörka sektioner** (citatet, bokningen, footern): brödtext byts från `text-background/75` till `text-background` eller `text-background/90`. Honungsgult mot mörk bakgrund är OK och stannar.
+- **Bas-storlek**: body-fonten lyfts från 16 → 17px och radhöjden upp en aning. Det här hjälper både äldre läsare och syn­svaga utan att designen tappar editoriell rytm.
+- **Knapparnas etiketter**: nuvarande `text-[0.75rem]` på telefon­knappen i headern höjs till 0.85rem.
 
-### Nytt internt arbetsdokument
-- `src/data/oppna-fragor.md` skrivs om till en kort Väse-only-lista (bilder från Roney, vektorlogo, evenemangsdatum, om vi får skriva ut Gabriel som anställd). Tidigare Molkom-frågor markeras avklarade ("Molkom sålt — utgår").
+### 3. Tillgänglighet — ja, det går att bygga för synsvaga
 
-### Verifiering efter Fas 1
-- `rg -i "molkom"` ska bara träffa möjligen kommentarer i `oppna-fragor.md` (historik).
-- Build går grön, preview laddar `/`, `/meny`, `/om-oss`, `/kontakta-oss`, `/catering`, `/faq`, `/villkor`, `/integritetspolicy`.
-- `/molkoms-pizzeria` ska ge 404 via root `notFoundComponent`.
+Inte "blind" i screenreader-mening enbart — vi täcker hela spektrumet:
 
----
+- `<html lang="sv">` i `__root.tsx`.
+- Skip-link ("Hoppa till innehåll") överst som blir synlig vid tab.
+- Ett `<main id="content">` per sida, en H1 per sida, rätt rubrik­hierarki.
+- Synlig `:focus-visible`-ring på alla länkar, knappar och formulärfält (en distinkt fox-röd ring, inte default-blå).
+- Tap-targets ≥ 44×44 px (mobil­menyn och telefon-CTA stäms av).
+- Alla `<img>` får meningsfulla `alt`. Dekorativa motiv får `alt=""` + `aria-hidden`.
+- Bokningsformuläret får riktiga `<label>` (visuellt eller `sr-only`), `aria-required` och `autocomplete`.
+- Header får `aria-label="Primär navigation"`. Hamburger-knappen får `aria-expanded` och `aria-controls`.
+- Honoring `prefers-reduced-motion`: marquee och hover-translates dämpas (delvis redan på plats — säkras).
+- Header-fokus: när menyn öppnas på mobil fokuseras första länken; Escape stänger.
 
-## Fas 2 — Redesign-ritual
+### 4. Bekräftelse på "hem = Rävens Bistro"
 
-När Fas 1 är klar och preview visar en ren Väse-sajt:
+Det är redan så i koden — `/` ÄR landningen. Men jag tar bort allt som kan så tvivel: i `<Link to="/">`-loggan i headern lägger jag `aria-label="Rävens Bistro — hem"`, och nav-etiketten "HEM" kan stå kvar (tydligare för äldre besökare än bara loggan). Ingen separat `/ravens-bistro`-route finns och ska inte skapas.
 
-### Steg 2a — Capture
-Jag tar en skärmdump av den nystädade `/` som referens.
+## Tekniskt (för referens)
 
-### Steg 2b — Pin the taste
-Tre visuella frågor i en runda (du svarar genom att klicka på alternativ):
-1. **Palette** — 3 förslag som funkar för bistro/mat (varm jordton, mörk fine-dining, ljus skandinavisk).
-2. **Typografi** — 3 typsnittspar (t.ex. modern serif + sans, editorial display + grotesk, varm humanist + script-accent).
-3. **Layout** — 3 wireframe-strukturer (klassisk hero+rutnät, redaktionellt magazine, asymmetrisk broken-grid).
+- Filer som ändras: `src/routes/{catering,om-oss,kontakta-oss,meny,faq,__root}.tsx`, `src/components/site/{Header,Footer}.tsx`, `src/styles.css`, `src/routes/index.tsx` (kontrast­finputs).
+- Fil som raderas: `src/components/site/MarkdownPage.tsx`.
+- Inga nya paket. shadcn `accordion` finns redan i `src/components/ui/`.
+- Inget röres i databas, server­funktioner eller `scraped.json` (källmaterial bevaras).
 
-Inga "vad är vibben?"-frågor. Bara tre konkreta val.
+## Vad jag INTE rör i den här rundan
 
-### Steg 2c — Tre riktningar
-Med dina val låsta genererar jag tre fullt renderade designriktningar för startsidan. De delar palett/typografi/layout men har olika hållning, densitet och rytm. Du ser dem som klickbara previews.
+- Bokning via Lovable Cloud (mailto kvar tills du säger annat).
+- Nya bilder — vi använder `src/assets/scraped/*` och Mariettes barporträtt.
+- Domän, publicering, online-beställning.
 
-### Steg 2d — Bygg
-Du väljer en. Jag implementerar exakt den valda riktningen — design-tokens kopieras rakt av in i `src/styles.css`, komposition och densitet matchas, och sedan rullar jag ut samma språk på övriga sidor (`/meny`, `/om-oss`, `/catering`, `/kontakta-oss`, `/faq`).
-
-### Vad jag INTE rör i den här rundan
-- Bordsbokning via Lovable Cloud (separat beslut — Google Forms/mailto kvar tills du säger annat).
-- Domänkoppling.
-- Beställning online.
-- Nya bilder (vi använder befintliga `src/assets/scraped/*` tills Roney skickar nya).
-
----
-
-## Teknisk sammanfattning
-
-- Inga nya paket.
-- Ingen schemaändring.
-- Inga nya routes; en route (`molkoms-pizzeria`) raderas.
-- `routeTree.gen.ts` regenereras automatiskt när Molkom-routen försvinner.
-- Alla canonical/og:url-värden är redan relativa — påverkas inte.
-- Firecrawl-nyckeln (`FIRECRAWL_API_KEY`) ligger kvar oanvänd, redo för framtida menyuppdateringar.
-
-## Vad du gör nu
-
-Säg "kör" så börjar jag med Fas 1. När den är grön ställer jag de tre visuella frågorna för Fas 2.
+Säg "kör" så börjar jag städa.
