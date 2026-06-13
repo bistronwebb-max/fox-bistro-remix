@@ -1,64 +1,32 @@
-## Vad du faktiskt ser
+## Vad du ser
 
-"Spöket" på /catering är inte två sajter — det är den nya editoriella headern överst, och under den hela den gamla skrapade markdown-texten (som börjar med sin egen rubrik "Catering - Rävens Bistro" + en "Home / Catering"-brödsmula). Samma sak händer på /om-oss, /kontakta-oss, /meny och /faq — alla använder `MarkdownPage` som dumpar in `scraped.json` rakt av. Det är därför det känns som att gammal och ny sajt ligger ovanpå varandra.
+Den svarta rutan i screenshoten är ett team-kort på `/om-oss` där vi bara har logga + namn men ingen bild. Just nu listar vi Roney (har foto) och Mariette (har bar-fotot). Resten av personalen står inte med ännu — så ingen "tom svart ruta" är aktiv på sidan i kod, men estetiskt är de mörka platshållarna ändå tråkiga.
 
-Och du har rätt om "Hem" vs "Rävens Bistro": navlänken HEM går redan till `/` som ÄR Rävens Bistro-landningen. Det är samma sida. Men eftersom undersidorna fortfarande spökar med den gamla layouten ser det ut som två olika sajter.
+## Bilder vi faktiskt har / kan hämta
 
-## Vad jag ska göra
+Jag scrapade din gamla sajt och bilderna ligger fortfarande öppet på WordPress (även om "spara som" inte funkar i Revolution Slider). Det här är de användbara:
 
-### 1. Städa undersidorna — `MarkdownPage` pensioneras
+- `image-2-first-sektion.jpg` — gammal headersektion, interiör
+- `Ravens-74-of-108-scaled.jpg` — bistron inifrån, hög upplösning
+- `pizza-start-1.jpg` — vedugnspizza-närbild
+- `elementor/thumbs/1000039989-…jpg` — stämningsbild
+- `Roney-e1712605911292.png` — porträtt Roney (renare än den vi har)
+- `Johans-ansikte-480x480.png` — porträtt Johan (anställd)
+- `team2.jpg`, `team3.jpg` — gamla teamporträtt (kollar vilka det är)
 
-Den dumpar oredigerad skrapad text och drar in den gamla sajtens rubrik + brödsmula. Den ersätts med riktiga, kurerade route-komponenter i samma editoriella språk som hem-sidan.
+Headerbilden från Revolution Slider på startsidan går också att fiska ut via dess JSON-endpoint — jag tar den i samma sväng.
 
-- **`/catering`** — skrivs om till en egen sida: hero (samma stil som hem), tre kort (Buffé · Smörgåstårta · Kallskuret), en "så funkar det"-rad, kontaktblock med Boka@-mejl och telefon.
-- **`/om-oss`** — hero + två kolumner brödtext (vår historia, vår filosofi), team-rutnät (Roney, Mariette, övriga ni vill ha med).
-- **`/kontakta-oss`** — hero, kontakt­kort (telefon, mejl, adress, öppettider, kartlänk), och en kort bokningsförklaring som länkar till `#boka` på hem.
-- **`/meny`** — hero + sektioner (Pizza, À la carte, Kebab & pita, Drycker) i samma "editorial table"-stil som veckomenyn på hem.
-- **`/faq`** — hero + accordion (shadcn) med Väse-frågorna.
-- `MarkdownPage.tsx` raderas. `scraped.json` får ligga kvar som källmaterial men importeras inte längre direkt.
+## Förslag
 
-Efter det: ingen sida har en dubbel rubrik eller "Home / X"-brödsmula. En sajt, ett språk.
+1. **Ladda ner** ovanstående bilder, ladda upp dem som Lovable-assets (CDN), och rensa bort de gamla filerna när allt är pekat rätt.
+2. **Använd den gamla "first-sektion"-headern** (eller Revolution Slider-headern om den är snyggare) som bakgrund i de två stora korten på `/om-oss` ("Tradition & kvalitet" / "Evenemang & festligheter") istället för platt svart. Mörk overlay ovanpå så honungsgul + vit text fortsätter klara WCAG AA.
+3. **Lägg till Johan** som ett tredje team-kort på `/om-oss` med hans porträtt, så raden blir tre kort istället för två + ett tomrum. (Du säger till vilken roll han har — "Kock"?)
+4. **Byt ut Roney-fotot** mot den renare PNG:en från wp-uploads om du tycker den ser bättre ut — jag visar båda först.
+5. **Inga ändringar** på meny-/stat-korten på startsidan — de är medvetet rena och ska inte ha bakgrundsbilder bakom siffrorna.
 
-### 2. Läsbarhet och kontrast (det här är inte kosmetik — det är hela poängen)
+## Vad jag behöver veta innan jag bygger
 
-Inget vitt på beige. Inget ljust gult på beige. Allt brödtext-grått tas upp till WCAG AA (4.5:1) eller AAA (7:1) där det går.
+- Vill du att jag tar med Johan i teamet nu, eller väntar vi tills du har en titel/text till honom?
+- OK att jag byter de mörka om-oss-korten till foto + overlay, eller vill du behålla dem helt platt svarta som nu?
 
-- **Tokens i `src/styles.css`**: `--muted-foreground` mörknas tills den klarar 4.5:1 mot ivory. `--background/0.X`-utilityn på mörka sektioner sätts aldrig lägre än 0.75 för brödtext, 0.85 för kapitel-eyebrows.
-- **Hem-sidan**: små "ETABLERAD 2018 · VÄSE" och "NR 01 — SÄSONGEN 2026" lyfts från `text-foreground/60` till `text-foreground/85` + fetare vikt. Honungsgula priser/accenter byts till en mörkare honungston när de står på ljus bakgrund.
-- **Mörka sektioner** (citatet, bokningen, footern): brödtext byts från `text-background/75` till `text-background` eller `text-background/90`. Honungsgult mot mörk bakgrund är OK och stannar.
-- **Bas-storlek**: body-fonten lyfts från 16 → 17px och radhöjden upp en aning. Det här hjälper både äldre läsare och syn­svaga utan att designen tappar editoriell rytm.
-- **Knapparnas etiketter**: nuvarande `text-[0.75rem]` på telefon­knappen i headern höjs till 0.85rem.
-
-### 3. Tillgänglighet — ja, det går att bygga för synsvaga
-
-Inte "blind" i screenreader-mening enbart — vi täcker hela spektrumet:
-
-- `<html lang="sv">` i `__root.tsx`.
-- Skip-link ("Hoppa till innehåll") överst som blir synlig vid tab.
-- Ett `<main id="content">` per sida, en H1 per sida, rätt rubrik­hierarki.
-- Synlig `:focus-visible`-ring på alla länkar, knappar och formulärfält (en distinkt fox-röd ring, inte default-blå).
-- Tap-targets ≥ 44×44 px (mobil­menyn och telefon-CTA stäms av).
-- Alla `<img>` får meningsfulla `alt`. Dekorativa motiv får `alt=""` + `aria-hidden`.
-- Bokningsformuläret får riktiga `<label>` (visuellt eller `sr-only`), `aria-required` och `autocomplete`.
-- Header får `aria-label="Primär navigation"`. Hamburger-knappen får `aria-expanded` och `aria-controls`.
-- Honoring `prefers-reduced-motion`: marquee och hover-translates dämpas (delvis redan på plats — säkras).
-- Header-fokus: när menyn öppnas på mobil fokuseras första länken; Escape stänger.
-
-### 4. Bekräftelse på "hem = Rävens Bistro"
-
-Det är redan så i koden — `/` ÄR landningen. Men jag tar bort allt som kan så tvivel: i `<Link to="/">`-loggan i headern lägger jag `aria-label="Rävens Bistro — hem"`, och nav-etiketten "HEM" kan stå kvar (tydligare för äldre besökare än bara loggan). Ingen separat `/ravens-bistro`-route finns och ska inte skapas.
-
-## Tekniskt (för referens)
-
-- Filer som ändras: `src/routes/{catering,om-oss,kontakta-oss,meny,faq,__root}.tsx`, `src/components/site/{Header,Footer}.tsx`, `src/styles.css`, `src/routes/index.tsx` (kontrast­finputs).
-- Fil som raderas: `src/components/site/MarkdownPage.tsx`.
-- Inga nya paket. shadcn `accordion` finns redan i `src/components/ui/`.
-- Inget röres i databas, server­funktioner eller `scraped.json` (källmaterial bevaras).
-
-## Vad jag INTE rör i den här rundan
-
-- Bokning via Lovable Cloud (mailto kvar tills du säger annat).
-- Nya bilder — vi använder `src/assets/scraped/*` och Mariettes barporträtt.
-- Domän, publicering, online-beställning.
-
-Säg "kör" så börjar jag städa.
+Säg "kör" så hämtar jag bilderna, laddar upp dem och uppdaterar `/om-oss`.
