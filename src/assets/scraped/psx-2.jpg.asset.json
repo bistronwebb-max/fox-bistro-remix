@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "cb8d4884-fbad-4ef9-a511-213d39474e65",
+  "asset_id": "cc3975be-bbb7-421a-b315-fc76102cabbe",
   "project_id": "1c385275-f9a2-4559-a6ff-e2176f419bb6",
-  "url": "/__l5e/assets-v1/cb8d4884-fbad-4ef9-a511-213d39474e65/psx-2.jpg",
-  "r2_key": "a/v1/1c385275-f9a2-4559-a6ff-e2176f419bb6/cb8d4884-fbad-4ef9-a511-213d39474e65/psx-2.jpg",
-  "original_filename": "psx-2.jpg",
-  "size": 12109692,
-  "content_type": "image/jpeg",
-  "created_at": "2026-06-13T11:56:45Z"
+  "url": "/__l5e/assets-v1/cc3975be-bbb7-421a-b315-fc76102cabbe/psx-2.webp",
+  "r2_key": "a/v1/1c385275-f9a2-4559-a6ff-e2176f419bb6/cc3975be-bbb7-421a-b315-fc76102cabbe/psx-2.webp",
+  "original_filename": "psx-2.webp",
+  "size": 148752,
+  "content_type": "image/webp",
+  "created_at": "2026-06-13T12:25:41Z"
 }
