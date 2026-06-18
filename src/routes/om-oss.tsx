@@ -86,7 +86,7 @@ function OmOssPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { img: teamRoney, name: "Roney Saad", role: "Grundare & kock", alt: "Porträtt av Roney Saad, grundare och kock" },
-              { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef", alt: "Porträtt av Mariette Lindberg, barchef" },
+              { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef & sola i Väse", alt: "Porträtt av Mariette Lindberg, barchef och sola i Väse" },
               { img: foodIg04.url, name: "Lyxat & lyxpizza", role: "Du beställer — vi serverar", alt: "Lyxig pizza från Rävens Bistro" },
             ].map((p) => (
               <figure key={p.name}>
