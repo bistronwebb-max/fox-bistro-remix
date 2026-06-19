@@ -12,4 +12,15 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Force-enable nitro build with the Cloudflare Pages preset so that
+  // `vite build` on Cloudflare's CI emits `.output/public/_worker.js`
+  // (Pages SSR via _worker.js). Without an explicit `nitro` option the
+  // plugin skips nitro outside the Lovable sandbox.
+  nitro: {
+    preset: "cloudflare-pages",
+    cloudflare: {
+      nodeCompat: true,
+      deployConfig: false,
+    },
+  },
 });
