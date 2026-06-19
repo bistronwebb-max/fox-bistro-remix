@@ -97,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "Rävens Bistro",
           servesCuisine: ["Pizza", "Svensk husman", "Kebab", "À la carte"],
           telephone: "+46-54-18 18 20",
-          email: "Kontakt@ravensbistro.se",
+          email: "Kontakt@ravensbistro.com",
           priceRange: "$$",
           address: {
             "@type": "PostalAddress",

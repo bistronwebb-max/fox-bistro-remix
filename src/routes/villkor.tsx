@@ -28,7 +28,7 @@ function TermsPage() {
         <p className="mt-2 text-sm">Villkoren gäller <strong>Rävens Bistro</strong>, Storgatan 38, 660 57 Väse — sedan 2018.</p>
 
         <h2 className="mt-10 text-2xl font-bold">1. Bordsbokning</h2>
-        <p className="mt-2">Bokning är bekräftad först när du fått svar från oss via telefon eller e-post. Avbokning sker senast 4 timmar innan ankomst. För sällskap över 8 personer gäller 24 timmar. Bokning: 054-18 18 20 eller Boka@ravensbistro.se.</p>
+        <p className="mt-2">Bokning är bekräftad först när du fått svar från oss via telefon eller e-post. Avbokning sker senast 4 timmar innan ankomst. För sällskap över 8 personer gäller 24 timmar. Bokning: 054-18 18 20 eller Boka@ravensbistro.com.</p>
 
         <h2 className="mt-8 text-2xl font-bold">2. Catering & evenemang</h2>
         <p className="mt-2">Offert skickas på förfrågan. Slutgiltig beställning bekräftas skriftligen. Avbokning utan kostnad senast 7 dagar innan; därefter debiteras 50 %.</p>
@@ -40,7 +40,7 @@ function TermsPage() {
         <p className="mt-2">Meddela oss vid bokning. Vi tillagar i kök där allergener förekommer — vi kan inte garantera fullständig frihet från spår.</p>
 
         <h2 className="mt-8 text-2xl font-bold">5. Kontakt</h2>
-        <p className="mt-2">Frågor? Mejla <a className="text-primary underline" href="mailto:Kontakt@ravensbistro.se">Kontakt@ravensbistro.se</a> eller ring 054-18 18 20.</p>
+        <p className="mt-2">Frågor? Mejla <a className="text-primary underline" href="mailto:Kontakt@ravensbistro.com">Kontakt@ravensbistro.com</a> eller ring 054-18 18 20.</p>
       </main>
       <Footer />
     </div>
