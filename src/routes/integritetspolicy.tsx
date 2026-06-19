@@ -32,7 +32,7 @@ function PrivacyPage() {
         <p className="mt-2">För att kunna bekräfta din bokning, kontakta dig vid förändringar och uppfylla bokföringskrav.</p>
 
         <h2 className="mt-8 text-2xl font-bold">Dina rättigheter</h2>
-        <p className="mt-2">Du har rätt att begära ut, rätta eller radera dina uppgifter. Mejla <a className="text-primary underline" href="mailto:Kontakt@ravensbistro.se">Kontakt@ravensbistro.se</a>.</p>
+        <p className="mt-2">Du har rätt att begära ut, rätta eller radera dina uppgifter. Mejla <a className="text-primary underline" href="mailto:Kontakt@ravensbistro.com">Kontakt@ravensbistro.com</a>.</p>
 
         <h2 className="mt-8 text-2xl font-bold">Cookies</h2>
         <p className="mt-2">Webbplatsen använder endast tekniskt nödvändiga cookies. Ingen spårning för marknadsföring sker utan ditt samtycke.</p>
