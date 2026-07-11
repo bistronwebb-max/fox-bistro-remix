@@ -40,7 +40,7 @@ function ContactPage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-4 py-16 grid gap-12 lg:grid-cols-2">
+        <section className="mx-auto max-w-6xl px-4 py-16 grid gap-8 md:grid-cols-2">
           <div className="space-y-6">
             {items.map(({ Icon, label, value, href }) => (
               <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 hover:border-primary transition min-h-16">
@@ -62,37 +62,27 @@ function ContactPage() {
             </div>
           </div>
 
-          <form
-            className="rounded-2xl border border-border bg-card p-6 space-y-4 h-fit"
-            onSubmit={(e) => {
-              e.preventDefault();
-              const data = new FormData(e.currentTarget);
-              const subject = encodeURIComponent(`Webbformulär (${RAVEN.name}) — ${data.get("name")}`);
-              const body = encodeURIComponent(
-                `Till: ${RAVEN.name}\nFrån: ${data.get("name")} <${data.get("email")}>\n\n${data.get("msg")}`,
-              );
-              window.location.href = `mailto:${RAVEN.email}?subject=${subject}&body=${body}`;
-            }}
-          >
-            <h2 className="text-2xl font-bold">Skicka ett meddelande</h2>
-            <p className="text-sm text-muted-foreground">Går till {RAVEN.email}</p>
-            <label className="block">
-              <span className="text-sm font-semibold">För- och efternamn</span>
-              <input required name="name" autoComplete="name" aria-required="true" className="mt-1 w-full rounded-md border border-input bg-background px-3 py-3 text-base" />
-            </label>
-            <label className="block">
-              <span className="text-sm font-semibold">E-post</span>
-              <input required name="email" type="email" autoComplete="email" aria-required="true" className="mt-1 w-full rounded-md border border-input bg-background px-3 py-3 text-base" />
-            </label>
-            <label className="block">
-              <span className="text-sm font-semibold">Meddelande</span>
-              <textarea required name="msg" rows={6} aria-required="true" className="mt-1 w-full rounded-md border border-input bg-background px-3 py-3 text-base" />
-            </label>
-            <button type="submit" className="w-full rounded-full bg-primary py-3.5 text-base font-semibold text-primary-foreground hover:opacity-90 min-h-12">
-              Skicka meddelande
-            </button>
-            <p className="text-sm text-muted-foreground">Meddelandet öppnas i din e-postklient.</p>
-          </form>
+          <div className="rounded-2xl border border-border bg-card p-6 space-y-5 h-fit">
+            <h2 className="text-2xl font-bold">Hör av dig direkt</h2>
+            <p className="text-base text-foreground/85">
+              Vi svarar snabbast via e-post eller telefon. Välj vad som passar ditt ärende bäst.
+            </p>
+            <div className="space-y-3">
+              <a href={`mailto:${RAVEN.email}`} className="flex items-center justify-between gap-3 rounded-full bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground hover:opacity-90 min-h-12">
+                <span className="flex items-center gap-2"><Mail size={18} /> Allmänna frågor</span>
+                <span className="text-sm opacity-90 hidden sm:inline">{RAVEN.email}</span>
+              </a>
+              <a href={`mailto:${RAVEN.bookingEmail}`} className="flex items-center justify-between gap-3 rounded-full bg-foreground px-6 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12">
+                <span className="flex items-center gap-2"><Mail size={18} /> Bokning & event</span>
+                <span className="text-sm opacity-90 hidden sm:inline">{RAVEN.bookingEmail}</span>
+              </a>
+              <a href={RAVEN.phone.href} className="flex items-center justify-between gap-3 rounded-full border-2 border-foreground px-6 py-3.5 text-base font-semibold text-foreground hover:bg-foreground hover:text-background transition-colors min-h-12">
+                <span className="flex items-center gap-2"><Phone size={18} /> Ring oss</span>
+                <span className="text-sm opacity-90 hidden sm:inline">{RAVEN.phone.label}</span>
+              </a>
+            </div>
+            <p className="text-sm text-muted-foreground">Vi svarar oftast inom 24 timmar på vardagar.</p>
+          </div>
         </section>
 
         <section className="mx-auto max-w-6xl px-4 pb-20">
