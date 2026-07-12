@@ -61,9 +61,15 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10">
-          <div className="mx-auto max-w-7xl px-4 py-5 text-xs text-background/85 flex flex-col sm:flex-row gap-2 sm:justify-between">
+          <div className="mx-auto max-w-7xl px-4 py-5 text-xs text-background/85 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <span>© {new Date().getFullYear()} {RAVEN.name} — Alla rättigheter förbehållna.</span>
             <span>Storgatan 38, 660 57 Väse · 054-18 18 20</span>
+            <span>
+              Sidan sponsras av Anna Malmberg på{" "}
+              <a href="https://ainnova.se" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-[var(--color-honey)]">
+                AiNNOVA
+              </a>
+            </span>
           </div>
         </div>
       </div>
