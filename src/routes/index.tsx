@@ -281,7 +281,7 @@ function HomePage() {
 
         {/* ───────── BOOKING ───────── */}
         <section id="boka" className="relative bg-foreground text-background">
-          <div className="mx-auto max-w-7xl px-4 py-24 grid gap-14 lg:grid-cols-12">
+          <div className="mx-auto max-w-7xl px-4 py-24 grid gap-14 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-5">
               <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-[var(--color-honey)]">Kapitel IV — Välkommen</p>
               <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
@@ -290,7 +290,7 @@ function HomePage() {
                 <span className="italic text-[var(--color-honey)]" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1, "opsz" 144' }}>hos oss.</span>
               </h2>
               <p className="mt-6 text-background leading-relaxed max-w-md">
-                Fyll i formuläret eller ring direkt. Vi bekräftar inom kort.
+                Ring direkt eller maila oss så bekräftar vi inom kort.
                 Större sällskap, evenemang och catering — använd e-post.
               </p>
               <dl className="mt-10 space-y-4">
@@ -300,7 +300,7 @@ function HomePage() {
                 </div>
                 <div className="flex items-baseline gap-4">
                   <dt className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-background/85 w-20">Event</dt>
-                  <dd><a href={`mailto:${RAVEN.bookingEmail}`} className="font-heading text-xl text-background hover:text-[var(--color-honey)] transition-colors">{RAVEN.bookingEmail}</a></dd>
+                  <dd><span className="font-heading text-xl text-background">{RAVEN.bookingEmail}</span></dd>
                 </div>
                 <div className="flex items-baseline gap-4">
                   <dt className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-background/85 w-20">Tider</dt>
@@ -309,43 +309,29 @@ function HomePage() {
               </dl>
             </div>
 
-            <form
-              className="lg:col-span-7 rounded-[2rem] bg-background text-foreground p-8 md:p-10 space-y-5 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const f = e.currentTarget;
-                const data = new FormData(f);
-                const subject = encodeURIComponent("Bordsbokning via webbplats");
-                const body = encodeURIComponent(
-                  `Namn: ${data.get("name")}\nTelefon: ${data.get("phone")}\nAntal gäster: ${data.get("guests")}\nDatum & tid: ${data.get("when")}\n\nMeddelande: ${data.get("msg") || ""}`,
-                );
-                window.location.href = `mailto:${RAVEN.bookingEmail}?subject=${subject}&body=${body}`;
-              }}
-            >
-              <p className="font-heading text-2xl tracking-[-0.01em]">Förfrågan</p>
+            <div className="lg:col-span-7 rounded-[2rem] bg-background text-foreground p-8 md:p-10 space-y-5 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]">
+              <p className="font-heading text-2xl tracking-[-0.01em]">Kontakt</p>
+              <p className="text-sm text-muted-foreground">
+                Kopiera adressen och skriv i ditt vanliga mailprogram.
+              </p>
               <div className="grid gap-4 sm:grid-cols-2">
-                <LabeledInput label="För- och efternamn" name="name" autoComplete="name" required />
-                <LabeledInput label="Telefonnummer" name="phone" type="tel" autoComplete="tel" required />
-                <LabeledInput label="Antal gäster" name="guests" type="number" min="1" required />
-                <LabeledInput label="Datum och tid" name="when" type="datetime-local" required />
+                <div className="rounded-2xl border border-foreground/10 bg-card p-5">
+                  <p className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-foreground/80">Bokning & event</p>
+                  <p className="mt-2 font-heading text-lg text-foreground select-all">{RAVEN.bookingEmail}</p>
+                </div>
+                <div className="rounded-2xl border border-foreground/10 bg-card p-5">
+                  <p className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-foreground/80">Allmänna frågor</p>
+                  <p className="mt-2 font-heading text-lg text-foreground select-all">{RAVEN.email}</p>
+                </div>
               </div>
-              <label className="block">
-                <span className="text-sm font-semibold text-foreground">Önskemål (valfritt)</span>
-                <textarea
-                  name="msg"
-                  rows={3}
-                  className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-base focus:outline-none focus:border-primary transition"
-                />
-              </label>
-              <button
-                type="submit"
+              <a
+                href={RAVEN.phone.href}
                 className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12"
               >
-                Skicka bokningsförfrågan
-                <ArrowUpRight size={16} className="transition-transform group-hover:rotate-45" />
-              </button>
-              <p className="text-sm text-muted-foreground">Bokningen öppnas i din e-postklient.</p>
-            </form>
+                <Phone size={18} />
+                Ring {RAVEN.phone.label}
+              </a>
+            </div>
           </div>
         </section>
 
@@ -427,17 +413,3 @@ function HomePage() {
   );
 }
 
-function LabeledInput({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
-  const id = `f-${props.name}`;
-  return (
-    <label htmlFor={id} className="block">
-      <span className="text-sm font-semibold text-foreground">{label}</span>
-      <input
-        id={id}
-        {...props}
-        aria-required={props.required ? "true" : undefined}
-        className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-base placeholder:text-foreground/60 focus:outline-none focus:border-primary transition"
-      />
-    </label>
-  );
-}
