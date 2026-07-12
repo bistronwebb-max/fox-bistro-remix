@@ -70,11 +70,11 @@ function ContactPage() {
             <div className="space-y-3">
               <a href={`mailto:${RAVEN.email}`} className="flex items-center justify-between gap-3 rounded-full bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground hover:opacity-90 min-h-12">
                 <span className="flex items-center gap-2"><Mail size={18} /> Allmänna frågor</span>
-                <span className="text-sm opacity-90 hidden sm:inline">{RAVEN.email}</span>
+                <span className="text-sm hidden sm:inline">{RAVEN.email}</span>
               </a>
               <a href={`mailto:${RAVEN.bookingEmail}`} className="flex items-center justify-between gap-3 rounded-full bg-foreground px-6 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12">
                 <span className="flex items-center gap-2"><Mail size={18} /> Bokning & event</span>
-                <span className="text-sm opacity-90 hidden sm:inline">{RAVEN.bookingEmail}</span>
+                <span className="text-sm hidden sm:inline">{RAVEN.bookingEmail}</span>
               </a>
               <a href={RAVEN.phone.href} className="flex items-center justify-between gap-3 rounded-full border-2 border-foreground px-6 py-3.5 text-base font-semibold text-foreground hover:bg-foreground hover:text-background transition-colors min-h-12">
                 <span className="flex items-center gap-2"><Phone size={18} /> Ring oss</span>
