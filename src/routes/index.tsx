@@ -413,17 +413,3 @@ function HomePage() {
   );
 }
 
-function LabeledInput({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
-  const id = `f-${props.name}`;
-  return (
-    <label htmlFor={id} className="block">
-      <span className="text-sm font-semibold text-foreground">{label}</span>
-      <input
-        id={id}
-        {...props}
-        aria-required={props.required ? "true" : undefined}
-        className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-base placeholder:text-foreground/60 focus:outline-none focus:border-primary transition"
-      />
-    </label>
-  );
-}
