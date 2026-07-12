@@ -22,7 +22,7 @@ export function Marquee({ phrases, tone = "dark" }: { phrases: string[]; tone?: 
             }
           >
             {p}
-            <span className={isRed ? "text-black/30 text-2xl" : "text-background/40 text-2xl"}>✶</span>
+            <span aria-hidden className={isRed ? "text-black/30 text-2xl" : "text-background/40 text-2xl"}>✶</span>
           </span>
         ))}
       </div>

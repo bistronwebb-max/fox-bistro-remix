@@ -218,7 +218,7 @@ function HomePage() {
           <div className="mx-auto max-w-7xl px-4 py-24">
             <div className="grid gap-8 lg:grid-cols-12 items-end">
               <div className="lg:col-span-6">
-                <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Kapitel III — Vardagen</p>
+                <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-ember">Kapitel III — Vardagen</p>
                 <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
                   Veckans lunch
                   <br />
@@ -242,7 +242,7 @@ function HomePage() {
                   <span className="font-heading text-sm text-foreground/70 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-heading text-xl md:text-2xl tracking-[-0.01em]">{d.day}</span>
                   <span className="text-sm md:text-base text-foreground leading-relaxed">{d.dishes}</span>
-                  <span className="font-heading text-lg md:text-xl text-primary tabular-nums">139:-</span>
+                  <span className="font-heading text-lg md:text-xl text-ember tabular-nums">139:-</span>
                 </li>
               ))}
             </ul>
@@ -382,7 +382,7 @@ function HomePage() {
         <section className="bg-[color-mix(in_oklab,var(--foreground)_4%,var(--background))]">
           <div className="mx-auto max-w-7xl px-4 py-24 grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Det praktiska</p>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-ember">Det praktiska</p>
               <h2 className="mt-3 font-heading text-4xl md:text-5xl leading-[1.05] tracking-[-0.02em]">Allergier &amp; särskilda önskemål</h2>
               <p className="mt-5 max-w-xl text-foreground leading-relaxed">
                 Fråga oss alltid — vi har glutenfri surdeg som pizzabotten och hjälper
@@ -391,7 +391,7 @@ function HomePage() {
               </p>
             </div>
             <div className="lg:col-span-5">
-              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Betalning</p>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-ember">Betalning</p>
               <h3 className="mt-3 font-heading text-2xl tracking-[-0.01em]">Swish</h3>
               <p className="mt-2 text-base text-foreground/85">Vänster = vanlig betalning. Höger = under evenemang.</p>
               <div className="mt-6 grid grid-cols-2 gap-4">
