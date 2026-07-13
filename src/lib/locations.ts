@@ -14,4 +14,10 @@ export const RAVEN = {
   email: "kontakt@rävens.se",
   hours: "Mån–Tor 11–21 · Fre–Lör 11–22 · Sön 11–21",
   hoursLong: "Mån–tor 11–21 · Fre–lör 11–22 (till 01 vid evenemang) · Sön 11–21",
+  hoursList: [
+    "Mån–Tor: 11–21",
+    "Fre–Lör: 11–22 (till 01 vid evenemang)",
+    "Sön: 11–21",
+  ],
+  facebookUrl: "https://www.facebook.com/profile.php?id=61582095954447",
 } as const;
