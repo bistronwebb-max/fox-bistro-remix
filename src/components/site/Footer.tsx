@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import logo from "@/assets/scraped/logo.png";
 import { Marquee } from "./Marquee";
 import { RAVEN } from "@/lib/locations";
+import { Facebook } from "lucide-react";
 
 const defaultPhrases = [
   "Rävens Bistro · Väse",
@@ -33,9 +34,21 @@ export function Footer() {
                 </a>
               </li>
               <li><a className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline" href={RAVEN.phone.href}>{RAVEN.phone.label}</a></li>
-              <li><a className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline" href={`mailto:${RAVEN.email}`}>{RAVEN.email}</a></li>
-              <li><a className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline" href={`mailto:${RAVEN.bookingEmail}`}>{RAVEN.bookingEmail}</a></li>
-              <li className="pt-2 text-xs text-background/80">{RAVEN.hours}</li>
+              <li className="select-all">{RAVEN.email}</li>
+              <li className="select-all">{RAVEN.bookingEmail}</li>
+              <li>
+                <a className="inline-flex items-center gap-2 hover:text-[var(--color-honey)] underline-offset-4 hover:underline" href={RAVEN.facebookUrl} target="_blank" rel="noreferrer">
+                  <Facebook size={16} aria-hidden /> Facebook
+                </a>
+              </li>
+              <li className="pt-2">
+                <p className="text-xs uppercase tracking-wide font-semibold text-background/80">Öppettider</p>
+                <ul className="mt-1 space-y-0.5 text-xs text-background/85">
+                  {RAVEN.hoursList.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+              </li>
             </ul>
           </div>
 
@@ -47,6 +60,11 @@ export function Footer() {
               <li><Link to="/galleri" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Galleri</Link></li>
               <li><Link to="/om-oss" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Om oss</Link></li>
               <li><Link to="/kontakta-oss" className="hover:text-[var(--color-honey)] underline-offset-4 hover:underline">Kontakt</Link></li>
+              <li>
+                <a className="inline-flex items-center gap-2 hover:text-[var(--color-honey)] underline-offset-4 hover:underline" href={RAVEN.facebookUrl} target="_blank" rel="noreferrer">
+                  <Facebook size={16} aria-hidden /> Facebook
+                </a>
+              </li>
             </ul>
           </div>
 
