@@ -21,8 +21,8 @@ export const Route = createFileRoute("/kontakta-oss")({
 function ContactPage() {
   const items = [
     { Icon: Phone, label: "Telefon", value: RAVEN.phone.label, href: RAVEN.phone.href },
-    { Icon: Mail, label: "E-post", value: RAVEN.email, href: `mailto:${RAVEN.email}` },
-    { Icon: Mail, label: "Bokning av event", value: RAVEN.bookingEmail, href: `mailto:${RAVEN.bookingEmail}` },
+    { Icon: Mail, label: "E-post", value: RAVEN.email },
+    { Icon: Mail, label: "Bokning av event", value: RAVEN.bookingEmail },
     { Icon: MapPin, label: "Adress", value: RAVEN.address, href: RAVEN.mapsUrl },
   ];
 
@@ -42,17 +42,27 @@ function ContactPage() {
 
         <section className="mx-auto max-w-6xl px-4 py-16 grid gap-8 md:grid-cols-2">
           <div className="space-y-6">
-            {items.map(({ Icon, label, value, href }) => (
-              <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 hover:border-primary transition min-h-16">
-                <span className="grid h-12 w-12 place-items-center rounded-full bg-primary/10 text-primary">
-                  <Icon size={22} />
-                </span>
-                <div>
-                  <p className="text-xs uppercase tracking-wide font-semibold text-foreground/80">{label}</p>
-                  <p className="text-lg font-semibold text-foreground">{value}</p>
-                </div>
-              </a>
-            ))}
+            {items.map(({ Icon, label, value, href }) => {
+              const inner = (
+                <>
+                  <span className="grid h-12 w-12 place-items-center rounded-full bg-primary/10 text-primary">
+                    <Icon size={22} aria-hidden />
+                  </span>
+                  <div>
+                    <p className="text-xs uppercase tracking-wide font-semibold text-foreground/80">{label}</p>
+                    <p className="text-lg font-semibold text-foreground select-all">{value}</p>
+                  </div>
+                </>
+              );
+              const cls = "flex items-start gap-4 rounded-2xl border border-border bg-card p-5 min-h-16";
+              return href ? (
+                <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} className={`${cls} hover:border-primary transition`}>
+                  {inner}
+                </a>
+              ) : (
+                <div key={label} className={cls}>{inner}</div>
+              );
+            })}
             <div className="rounded-2xl border border-border bg-card p-5">
               <div className="flex items-center gap-3 text-primary">
                 <Clock size={20} />
