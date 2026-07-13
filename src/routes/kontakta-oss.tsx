@@ -58,24 +58,28 @@ function ContactPage() {
                 <Clock size={20} />
                 <p className="text-xs uppercase tracking-wide font-semibold">Öppettider</p>
               </div>
-              <p className="mt-3 text-base text-foreground">{RAVEN.hoursLong}</p>
+              <ul className="mt-3 space-y-1 text-base text-foreground">
+                {RAVEN.hoursList.map((h) => (
+                  <li key={h}>{h}</li>
+                ))}
+              </ul>
             </div>
           </div>
 
           <div className="rounded-2xl border border-border bg-card p-6 space-y-5 h-fit">
             <h2 className="text-2xl font-bold">Hör av dig direkt</h2>
             <p className="text-base text-foreground/85">
-              Vi svarar snabbast via e-post eller telefon. Välj vad som passar ditt ärende bäst.
+              Vi svarar snabbast via telefon. Använd e-post för bokning, event och övriga frågor — kopiera adressen nedan.
             </p>
             <div className="space-y-3">
-              <a href={`mailto:${RAVEN.email}`} className="flex items-center justify-between gap-3 rounded-full bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground hover:opacity-90 min-h-12">
-                <span className="flex items-center gap-2"><Mail size={18} /> Allmänna frågor</span>
-                <span className="text-sm hidden sm:inline">{RAVEN.email}</span>
-              </a>
-              <a href={`mailto:${RAVEN.bookingEmail}`} className="flex items-center justify-between gap-3 rounded-full bg-foreground px-6 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12">
-                <span className="flex items-center gap-2"><Mail size={18} /> Bokning & event</span>
-                <span className="text-sm hidden sm:inline">{RAVEN.bookingEmail}</span>
-              </a>
+              <div className="rounded-2xl border border-border bg-background p-4">
+                <p className="text-xs uppercase tracking-wide font-semibold text-foreground/80 flex items-center gap-2"><Mail size={16} aria-hidden /> Allmänna frågor</p>
+                <p className="mt-1 font-heading text-lg text-foreground select-all">{RAVEN.email}</p>
+              </div>
+              <div className="rounded-2xl border border-border bg-background p-4">
+                <p className="text-xs uppercase tracking-wide font-semibold text-foreground/80 flex items-center gap-2"><Mail size={16} aria-hidden /> Bokning & event</p>
+                <p className="mt-1 font-heading text-lg text-foreground select-all">{RAVEN.bookingEmail}</p>
+              </div>
               <a href={RAVEN.phone.href} className="flex items-center justify-between gap-3 rounded-full border-2 border-foreground px-6 py-3.5 text-base font-semibold text-foreground hover:bg-foreground hover:text-background transition-colors min-h-12">
                 <span className="flex items-center gap-2"><Phone size={18} /> Ring oss</span>
                 <span className="text-sm opacity-90 hidden sm:inline">{RAVEN.phone.label}</span>
