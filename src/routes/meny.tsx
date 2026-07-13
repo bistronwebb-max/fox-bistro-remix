@@ -432,12 +432,9 @@ function MenyPage() {
           <div className="mx-auto max-w-5xl px-4 py-16 text-center">
             <p className="font-script text-4xl text-[var(--color-honey)]">Boka ett bord</p>
             <h2 className="mt-2 font-heading text-3xl md:text-4xl">Slå dig ner hos oss.</h2>
-            <p className="mt-4 text-background">Ring oss på {RAVEN.phone.label} eller boka via startsidan.</p>
+            <p className="mt-4 text-background">Ring oss på {RAVEN.phone.label} — vi svarar direkt.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link to="/" hash="boka" className="rounded-full bg-[var(--color-honey)] px-7 py-3.5 text-base font-semibold text-foreground hover:bg-background transition-colors min-h-12 inline-flex items-center">
-                Till bokningen
-              </Link>
-              <a href={RAVEN.phone.href} className="rounded-full border-2 border-background px-7 py-3.5 text-base font-semibold text-background hover:bg-background hover:text-foreground transition-colors min-h-12 inline-flex items-center">
+              <a href={RAVEN.phone.href} className="rounded-full bg-[var(--color-honey)] px-7 py-3.5 text-base font-semibold text-foreground hover:bg-background transition-colors min-h-12 inline-flex items-center">
                 Ring {RAVEN.phone.label}
               </a>
               <Link to="/catering" className="rounded-full border-2 border-background/40 px-7 py-3.5 text-base font-semibold text-background/90 hover:border-background hover:text-background transition-colors min-h-12 inline-flex items-center">

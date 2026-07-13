@@ -36,14 +36,6 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const lunchMenu = [
-  { day: "Måndag", dishes: "Pasta bolognese · Fiskgratäng med kokt potatis" },
-  { day: "Tisdag", dishes: "Fläsk med raggmunk & lingon · Laxlasagne" },
-  { day: "Onsdag", dishes: "Pulled karré med ris · Stekt strömming med mos & skirat smör" },
-  { day: "Torsdag", dishes: "Ärtsoppa & pannkakor · Pocherad havskatt med ägg-räksås, dill & kokt potatis" },
-  { day: "Fredag", dishes: "Grillad entrecôte med klyftpotatis & béarnaise · Ugnsbakad lax med kokt potatis & hjortroncrème" },
-];
-
 function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -112,26 +104,31 @@ function HomePage() {
 
             {/* Info bar */}
             <div className="mt-20 grid gap-6 md:grid-cols-3 hairline pt-8">
-              {[
-                { Icon: Clock, label: "Öppet idag", value: RAVEN.hours.split(" · ")[0] },
-                { Icon: MapPin, label: "Adress", value: RAVEN.address },
-                { Icon: Phone, label: "Boka direkt", value: RAVEN.phone.label, href: RAVEN.phone.href },
-              ].map(({ Icon, label, value, href }) => {
-                const inner = (
-                  <div className="flex items-start gap-4">
-                    <Icon size={20} className="mt-1 text-primary shrink-0" />
-                    <div className="min-w-0">
-                      <p className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-foreground/80">{label}</p>
-                      <p className="mt-1 font-heading text-lg leading-snug">{value}</p>
-                    </div>
-                  </div>
-                );
-                return href ? (
-                  <a key={label} href={href} className="block group">{inner}</a>
-                ) : (
-                  <div key={label}>{inner}</div>
-                );
-              })}
+              <div className="flex items-start gap-4">
+                <Clock size={20} className="mt-1 text-primary shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-foreground/80">Öppettider</p>
+                  <ul className="mt-1 space-y-0.5 font-heading text-base leading-snug">
+                    {RAVEN.hoursList.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <MapPin size={20} className="mt-1 text-primary shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-foreground/80">Adress</p>
+                  <p className="mt-1 font-heading text-lg leading-snug">{RAVEN.address}</p>
+                </div>
+              </div>
+              <a href={RAVEN.phone.href} className="flex items-start gap-4 group">
+                <Phone size={20} className="mt-1 text-primary shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-foreground/80">Ring oss</p>
+                  <p className="mt-1 font-heading text-lg leading-snug">{RAVEN.phone.label}</p>
+                </div>
+              </a>
             </div>
           </div>
         </section>
@@ -227,25 +224,27 @@ function HomePage() {
               </div>
               <div className="lg:col-span-6 lg:text-right">
                 <p className="text-base text-foreground/85 max-w-md lg:ml-auto">
-                  Inklusive salladsbuffé, dryck &amp; kaffe. Pensionärsrabatt 14 kr.
-                  Serveras måndag–fredag.
+                  Serveras vardagar. Inklusive salladsbuffé, dryck &amp; kaffe.
+                  Pensionärsrabatt 14 kr.
                 </p>
               </div>
             </div>
 
-            <ul className="mt-14 divide-y divide-foreground/25">
-              {lunchMenu.map((d, i) => (
-                <li
-                  key={d.day}
-                  className="grid grid-cols-[3rem_minmax(0,9rem)_1fr_auto] items-center gap-4 md:gap-8 py-6"
-                >
-                  <span className="font-heading text-sm text-foreground/70 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="font-heading text-xl md:text-2xl tracking-[-0.01em]">{d.day}</span>
-                  <span className="text-sm md:text-base text-foreground leading-relaxed">{d.dishes}</span>
-                  <span className="font-heading text-lg md:text-xl text-ember tabular-nums">139:-</span>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-14 rounded-[1.75rem] border border-foreground/15 bg-background/60 p-8 md:p-10">
+              <p className="text-base md:text-lg leading-relaxed text-foreground max-w-2xl">
+                Veckans rätter varierar och uppdateras löpande. Aktuell lunchmeny
+                hittar du alltid på vår Facebook-sida.
+              </p>
+              <a
+                href={RAVEN.facebookUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12"
+              >
+                Se veckans lunch på Facebook
+                <ArrowUpRight size={16} />
+              </a>
+            </div>
           </div>
         </section>
 
@@ -304,7 +303,13 @@ function HomePage() {
                 </div>
                 <div className="flex items-baseline gap-4">
                   <dt className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-background/85 w-20">Tider</dt>
-                  <dd className="text-sm text-background">{RAVEN.hoursLong}</dd>
+                  <dd className="text-sm text-background">
+                    <ul className="space-y-0.5">
+                      {RAVEN.hoursList.map((h) => (
+                        <li key={h}>{h}</li>
+                      ))}
+                    </ul>
+                  </dd>
                 </div>
               </dl>
             </div>
