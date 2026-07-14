@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { RAVEN } from "@/lib/locations";
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import cateringAsset from "@/assets/scraped/catering-bg-1.jpg.asset.json";
 
 export const Route = createFileRoute("/catering")({
@@ -76,12 +76,10 @@ function CateringPage() {
                 svensk husman och internationellt. Perfekt för kalas, företagsfester
                 och evenemang.
               </p>
-              <div className="mt-9 flex flex-wrap gap-4">
-                <a href={`mailto:${RAVEN.bookingEmail}?subject=${encodeURIComponent("Cateringförfrågan")}`}
-                  className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12">
-                  <Mail size={18} /> Skicka förfrågan
-                  <ArrowUpRight size={16} className="transition-transform group-hover:rotate-45" />
-                </a>
+              <div className="mt-9 flex flex-wrap items-center gap-4">
+                <span className="inline-flex items-center gap-2 rounded-full border-2 border-foreground/20 px-6 py-3 text-base font-semibold text-foreground select-all">
+                  <Mail size={18} aria-hidden /> {RAVEN.bookingEmail}
+                </span>
                 <a href={RAVEN.phone.href} className="inline-flex items-center gap-2 link-underline text-base font-semibold text-foreground min-h-12">
                   <Phone size={18} /> {RAVEN.phone.label}
                 </a>
@@ -132,11 +130,10 @@ function CateringPage() {
               Skicka en förfrågan så återkommer vi med förslag, pris och upplägg.
               Ring oss om det är bråttom — vi svarar oftast samma dag.
             </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-4">
-              <a href={`mailto:${RAVEN.bookingEmail}?subject=${encodeURIComponent("Cateringförfrågan")}`}
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-honey)] px-7 py-3.5 text-base font-semibold text-foreground hover:bg-background transition-colors min-h-12">
-                <Mail size={18} /> {RAVEN.bookingEmail}
-              </a>
+            <div className="mt-9 flex flex-wrap justify-center items-center gap-4">
+              <span className="inline-flex items-center gap-2 rounded-full border-2 border-background/40 px-6 py-3 text-base font-semibold text-background select-all">
+                <Mail size={18} aria-hidden /> {RAVEN.bookingEmail}
+              </span>
               <a href={RAVEN.phone.href}
                 className="inline-flex items-center gap-2 rounded-full border-2 border-background px-7 py-3.5 text-base font-semibold text-background hover:bg-background hover:text-foreground transition-colors min-h-12">
                 <Phone size={18} /> {RAVEN.phone.label}
