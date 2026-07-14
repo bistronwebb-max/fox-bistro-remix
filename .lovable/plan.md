@@ -1,32 +1,31 @@
-Du är på rätt ställe. Texten **“No eligible workspace members found”** betyder att `bistronwebb@gmail.com` är inbjuden/admin på själva projektet, men **inte medlem i workspace**. Transfer ownership-listan visar bara workspace-medlemmar.
+## Ändringar
 
-Gör så här, klick för klick:
+### 1. Ta bort boknings-CTA:er (behåll telefon-CTA)
+Startsidan (`src/routes/index.tsx`):
+- Ta bort "Boka bord"-knappen i hero (`href="#boka"`).
+- Ta bort hela BOOKING-sektionen (`<section id="boka">`) inkl. kontakt-kortet med mailadresser och Ring-knapp.
 
-1. **Stäng popupen**
-   - Klicka på **X** uppe till höger i rutan “Transfer ownership”.
+Kontaktsidan (`src/routes/kontakta-oss.tsx`):
+- Ta bort ev. "Skicka förfrågan"-knapp.
+- **Behåll** "Ring oss"-CTA (telefonknapp).
+- Mailadresser kvar som kopierbar text.
 
-2. **Gå till People**
-   - I vänstermenyn, under **Members & access**, klicka på **People**.
+Facebook-CTA och telefon-CTA får stanna överallt.
 
-3. **Bjud in honom till workspace**
-   - Leta efter knapp som heter **Invite**, **Invite member** eller liknande.
-   - Skriv: `bistronwebb@gmail.com`
-   - Välj roll: helst **Admin**. Om Owner finns och känns rätt kan det också fungera, men **Admin räcker normalt**.
-   - Klicka **Invite / Send invite**.
+### 2. Ny "Evenemang"-sektion på startsidan
+Placeras direkt under Veckans lunch, före "En smygtitt". Redaktionell stil som övriga kapitel:
+- Eyebrow: "Kapitel — Stämningen"
+- Rubrik: "På Rävens har vi ofta evenemang."
+- Brödtext: "Trubadurer, band, dans, quizkvällar och matcher på storbilds-TV. Håll dig uppdaterad — och planera gärna ditt nästa kalas hos oss. Evenemangen varierar med olika teman. Aktuella evenemang hittar du alltid på vår Facebook-sida."
+- CTA (Facebook): "Se aktuella evenemang på Facebook" → `RAVEN.facebookUrl`.
+- Visuell accent: ett av `event-live-1/2/3.jpg`.
 
-4. **Acceptera inbjudan från Roneys konto**
-   - Eftersom du har hans Googleprofil: öppna Lovable/Gmail som `bistronwebb@gmail.com`.
-   - Acceptera workspace-inbjudan om den kräver accept.
-   - Om han redan syns direkt i People-listan kan du gå vidare.
+### 3. Större logga i headern
+`src/components/site/Header.tsx`: öka logga från `h-9` till ca `h-12` (mobil `h-10`), justera padding vid behov.
 
-5. **Gå tillbaka till transfer**
-   - Tillbaka till projektets inställningar:
-   - Vänstermenyn: **Project → General**.
-   - Scrolla till **Transfer ownership**.
-   - Klicka **Transfer**.
+### 4. Dölj "Edit with Lovable"-badge
+Sätts via `publish_settings--set_badge_visibility` med `hide_badge: true` (kräver Pro-plan; ber om godkännande vid körning).
 
-6. **Välj ny ägare**
-   - I dropdownen **New owner**, välj `bistronwebb@gmail.com`.
-   - Bekräfta transfer.
-
-Viktigt: Det du är på väg att göra är rätt metod för att få med projektet och databasen/Cloud. Att han bara är project admin räcker inte för transfer — han måste även vara workspace-medlem.
+## Tekniska noter
+- När `#boka`-sektion tas bort: sök efter kvarvarande länkar till `#boka` och rensa.
+- Rent UI, ingen backend.
