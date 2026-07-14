@@ -19,6 +19,7 @@ import gFood5 from "@/assets/scraped/food-ig-05.jpg.asset.json";
 import gFood6 from "@/assets/scraped/food-ig-06.jpg.asset.json";
 import gFood7 from "@/assets/scraped/dinner.jpg.asset.json";
 import gFood8 from "@/assets/scraped/food-ig-08.jpg.asset.json";
+import eventLive from "@/assets/scraped/event-live-1.jpg.asset.json";
 import { RAVEN } from "@/lib/locations";
 import { ArrowUpRight, Phone, MapPin, Clock } from "lucide-react";
 
@@ -72,13 +73,6 @@ function HomePage() {
                   serverat i Väse, en kort biltur från Karlstad.
                 </p>
                 <div className="mt-9 flex flex-wrap items-center gap-4">
-                  <a
-                    href="#boka"
-                    className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12"
-                  >
-                    Boka bord
-                    <ArrowUpRight size={16} className="transition-transform group-hover:rotate-45" />
-                  </a>
                   <Link
                     to="/meny"
                     className="link-underline text-base font-semibold tracking-wide text-foreground"
@@ -248,7 +242,40 @@ function HomePage() {
           </div>
         </section>
 
-        {/* ───────── BOOKING ───────── */}
+        {/* ───────── EVENEMANG ───────── */}
+        <section className="relative overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4 py-24 grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-6">
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Kapitel — Stämningen</p>
+              <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
+                På Rävens har vi ofta
+                {" "}
+                <span className="italic text-primary" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1, "opsz" 144' }}>evenemang.</span>
+              </h2>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground">
+                Trubadurer, band, dans, quizkvällar och matcher på storbilds-TV. Håll dig
+                uppdaterad — och planera gärna ditt nästa kalas hos oss. Evenemangen
+                varierar med olika teman. Aktuella evenemang hittar du alltid på vår
+                Facebook-sida.
+              </p>
+              <a
+                href={RAVEN.facebookUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12"
+              >
+                Se aktuella evenemang på Facebook
+                <ArrowUpRight size={16} />
+              </a>
+            </div>
+            <div className="lg:col-span-6">
+              <div className="relative aspect-[4/5] md:aspect-[5/4] overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-30px_rgba(27,20,17,0.35)]">
+                <img src={eventLive.url} alt="Livemusik och stämning på Rävens Bistro" className="h-full w-full object-cover" />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ───────── SMYGTITT — strip of food images ───────── */}
         <section aria-labelledby="smygtitt" className="overflow-hidden border-y border-foreground/10 bg-background">
           <div className="mx-auto max-w-7xl px-4 pt-16 pb-8 flex items-end justify-between gap-6">
@@ -274,68 +301,6 @@ function HomePage() {
                   </span>
                 )),
               )}
-            </div>
-          </div>
-        </section>
-
-        {/* ───────── BOOKING ───────── */}
-        <section id="boka" className="relative bg-foreground text-background">
-          <div className="mx-auto max-w-7xl px-4 py-24 grid gap-14 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-5">
-              <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-[var(--color-honey)]">Kapitel IV — Välkommen</p>
-              <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
-                Boka ett bord
-                <br />
-                <span className="italic text-[var(--color-honey)]" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1, "opsz" 144' }}>hos oss.</span>
-              </h2>
-              <p className="mt-6 text-background leading-relaxed max-w-md">
-                Ring direkt eller maila oss så bekräftar vi inom kort.
-                Större sällskap, evenemang och catering — använd e-post.
-              </p>
-              <dl className="mt-10 space-y-4">
-                <div className="flex items-baseline gap-4">
-                  <dt className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-background/85 w-20">Telefon</dt>
-                  <dd><a href={RAVEN.phone.href} className="font-heading text-2xl text-[var(--color-honey)] hover:text-background transition-colors">{RAVEN.phone.label}</a></dd>
-                </div>
-                <div className="flex items-baseline gap-4">
-                  <dt className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-background/85 w-20">Event</dt>
-                  <dd><span className="font-heading text-xl text-background">{RAVEN.bookingEmail}</span></dd>
-                </div>
-                <div className="flex items-baseline gap-4">
-                  <dt className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-background/85 w-20">Tider</dt>
-                  <dd className="text-sm text-background">
-                    <ul className="space-y-0.5">
-                      {RAVEN.hoursList.map((h) => (
-                        <li key={h}>{h}</li>
-                      ))}
-                    </ul>
-                  </dd>
-                </div>
-              </dl>
-            </div>
-
-            <div className="lg:col-span-7 rounded-[2rem] bg-background text-foreground p-8 md:p-10 space-y-5 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]">
-              <p className="font-heading text-2xl tracking-[-0.01em]">Kontakt</p>
-              <p className="text-sm text-muted-foreground">
-                Kopiera adressen och skriv i ditt vanliga mailprogram.
-              </p>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-foreground/10 bg-card p-5">
-                  <p className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-foreground/80">Bokning & event</p>
-                  <p className="mt-2 font-heading text-lg text-foreground select-all">{RAVEN.bookingEmail}</p>
-                </div>
-                <div className="rounded-2xl border border-foreground/10 bg-card p-5">
-                  <p className="text-[0.7rem] uppercase tracking-[0.25em] font-semibold text-foreground/80">Allmänna frågor</p>
-                  <p className="mt-2 font-heading text-lg text-foreground select-all">{RAVEN.email}</p>
-                </div>
-              </div>
-              <a
-                href={RAVEN.phone.href}
-                className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12"
-              >
-                <Phone size={18} />
-                Ring {RAVEN.phone.label}
-              </a>
             </div>
           </div>
         </section>
