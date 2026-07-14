@@ -138,8 +138,8 @@ function HomePage() {
                 <em className="italic"> riktigt bra middag hemma hos någon du tycker om.</em>
                 <span className="text-primary">"</span>
               </blockquote>
-              <p className="mt-8 font-script text-4xl text-[var(--color-honey)]">Roney &amp; Mariette</p>
-              <p className="text-xs uppercase tracking-[0.3em] text-background/85 mt-1">Värdpar · Rävens Bistro</p>
+              <p className="mt-8 font-script text-4xl text-[var(--color-honey)]">Roney, Mariette &amp; personal</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-background/85 mt-1">RÄVENS BISTRO</p>
               <Link
                 to="/om-oss"
                 className="mt-10 link-underline inline-block text-base font-semibold tracking-wide text-background"
@@ -150,9 +150,9 @@ function HomePage() {
             <div className="lg:col-span-5">
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "539+", label: "Nöjda gäster 2023" },
-                  { value: "4 300", label: "Tillagade måltider" },
-                  { value: "4,8", label: "av 5 på Google" },
+                  { value: "À la carte", label: "KÖTT - FISK - SALLAD - BURGARE - PASTA\u00a0" },
+                  { value: "Pizza", label: "TRADITIONELLA 6 SPECIAL - PITA - KEBAB" },
+                  { value: "Dryck", label: "AV ALLA DE SORTER" },
                   { value: "2018", label: "Året vi öppnade" },
                 ].map((s) => (
                   <div key={s.label} className="rounded-2xl border border-background/15 p-6">
@@ -323,7 +323,7 @@ function HomePage() {
             {[
               { img: teamRoney, name: "Roney Saad", role: "Grundare &amp; kock", alt: "Porträtt av Roney Saad, grundare och kock" },
               { img: teamMariette.url, name: "Mariette Lindberg", role: "Barchef & sola i Väse", alt: "Porträtt av Mariette Lindberg, barchef och sola i Väse" },
-              { img: gFood4.url, name: "Lyxat & lyxpizza", role: "Du beställer — vi serverar", alt: "Lyxig pizza från Rävens Bistro" },
+              { img: gFood4.url, name: "Lyxmat & lyxpizza", role: "Du beställer — vi serverar", alt: "Lyxig pizza från Rävens Bistro" },
             ].map((p) => (
               <figure key={p.name} className="group">
                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[color-mix(in_oklab,var(--foreground)_8%,var(--background))]">
