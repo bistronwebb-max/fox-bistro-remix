@@ -19,6 +19,7 @@ import gFood5 from "@/assets/scraped/food-ig-05.jpg.asset.json";
 import gFood6 from "@/assets/scraped/food-ig-06.jpg.asset.json";
 import gFood7 from "@/assets/scraped/dinner.jpg.asset.json";
 import gFood8 from "@/assets/scraped/food-ig-08.jpg.asset.json";
+import eventLive from "@/assets/scraped/event-live-1.jpg.asset.json";
 import { RAVEN } from "@/lib/locations";
 import { ArrowUpRight, Phone, MapPin, Clock } from "lucide-react";
 
@@ -72,13 +73,6 @@ function HomePage() {
                   serverat i Väse, en kort biltur från Karlstad.
                 </p>
                 <div className="mt-9 flex flex-wrap items-center gap-4">
-                  <a
-                    href="#boka"
-                    className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-base font-semibold text-background hover:bg-primary transition-colors min-h-12"
-                  >
-                    Boka bord
-                    <ArrowUpRight size={16} className="transition-transform group-hover:rotate-45" />
-                  </a>
                   <Link
                     to="/meny"
                     className="link-underline text-base font-semibold tracking-wide text-foreground"
