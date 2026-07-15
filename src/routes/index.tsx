@@ -182,7 +182,6 @@ function HomePage() {
               </p>
             </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-              {[
             {[
               { icon: pizzaIcon, num: "01", title: "Pizza", desc: "Inbakade, klassiker och våra egna favoriter — ur vedugnen.", to: "/meny" as const },
               { icon: alacarteIcon, num: "02", title: "À la carte", desc: "Husman med själ, säsongens råvaror och välkomna klassiker.", to: "/meny" as const },
