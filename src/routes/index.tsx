@@ -21,7 +21,7 @@ import gFood7 from "@/assets/scraped/dinner.jpg.asset.json";
 import gFood8 from "@/assets/scraped/food-ig-08.jpg.asset.json";
 import eventLive from "@/assets/scraped/event-live-1.jpg.asset.json";
 import { RAVEN } from "@/lib/locations";
-import { ArrowUpRight, Phone, MapPin, Clock } from "lucide-react";
+import { ArrowUpRight, Phone, MapPin, Clock, Truck } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -172,34 +172,40 @@ function HomePage() {
               <div className="lg:col-span-7">
                 <p className="text-[0.7rem] uppercase tracking-[0.3em] font-semibold text-primary">Kapitel II — Köket</p>
                 <h2 className="mt-3 font-heading text-5xl md:text-6xl leading-[1.0] tracking-[-0.025em] text-balance">
-                  Tre vägar in i menyn.
+                Fyra vägar in i menyn.
                 </h2>
               </div>
               <p className="lg:col-span-5 text-base text-foreground/85 max-w-md">
-                Pizza ur vedugnen, klassisk husman och kebab/pita från eget recept — välj
-                ditt humör och bläddra vidare till hela menyn.
+              Pizza ur vedugnen, klassisk husman och kebab/pita från eget recept —
+              plus catering när festen ska hem till dig. Välj ditt humör och bläddra
+              vidare.
               </p>
             </div>
-            <div className="grid gap-5 md:grid-cols-3">
-              {[
-                { icon: pizzaIcon, num: "01", title: "Pizza", desc: "Inbakade, klassiker och våra egna favoriter — ur vedugnen." },
-                { icon: alacarteIcon, num: "02", title: "À la carte", desc: "Husman med själ, säsongens råvaror och välkomna klassiker." },
-                { icon: kebabIcon, num: "03", title: "Kebab & pita", desc: "Egen marinad, generösa portioner — i tallrik eller pita." },
-              ].map((c) => (
-                <Link
-                  key={c.title}
-                  to="/meny"
-                  className="group relative rounded-[1.75rem] border border-foreground/10 bg-card p-8 transition hover:border-primary/40 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(27,20,17,0.25)]"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="font-heading text-sm tracking-[0.2em] text-foreground/60">{c.num}</span>
-                    <ArrowUpRight size={18} className="text-foreground/40 transition group-hover:text-primary group-hover:rotate-45" />
-                  </div>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { icon: pizzaIcon, num: "01", title: "Pizza", desc: "Inbakade, klassiker och våra egna favoriter — ur vedugnen.", to: "/meny" as const },
+              { icon: alacarteIcon, num: "02", title: "À la carte", desc: "Husman med själ, säsongens råvaror och välkomna klassiker.", to: "/meny" as const },
+              { icon: kebabIcon, num: "03", title: "Kebab & pita", desc: "Egen marinad, generösa portioner — i tallrik eller pita.", to: "/meny" as const },
+              { icon: null, num: "04", title: "Catering", desc: "Ta hem Rävens till kalaset, jobbet eller festen — vi fixar resten.", to: "/catering" as const },
+            ].map((c) => (
+              <Link
+                key={c.title}
+                to={c.to}
+                className="group relative rounded-[1.75rem] border border-foreground/10 bg-card p-8 transition hover:border-primary/40 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(27,20,17,0.25)]"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="font-heading text-sm tracking-[0.2em] text-foreground/60">{c.num}</span>
+                  <ArrowUpRight size={18} className="text-foreground/40 transition group-hover:text-primary group-hover:rotate-45" />
+                </div>
+                {c.icon ? (
                   <img src={c.icon} alt="" className="mt-12 h-20 w-auto opacity-90" />
-                  <h3 className="mt-8 font-heading text-3xl tracking-[-0.02em]">{c.title}</h3>
-                  <p className="mt-2 text-base text-foreground/85 leading-relaxed">{c.desc}</p>
-                </Link>
-              ))}
+                ) : (
+                  <Truck size={72} strokeWidth={1.4} className="mt-12 text-primary" aria-hidden />
+                )}
+                <h3 className="mt-8 font-heading text-3xl tracking-[-0.02em]">{c.title}</h3>
+                <p className="mt-2 text-base text-foreground/85 leading-relaxed">{c.desc}</p>
+              </Link>
+            ))}
             </div>
           </div>
         </section>
