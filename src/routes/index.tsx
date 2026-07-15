@@ -151,7 +151,7 @@ function HomePage() {
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { value: "À la carte", label: "KÖTT - FISK - SALLAD - BURGARE - PASTA\u00a0" },
-                  { value: "Pizza", label: "TRADITIONELLA 6 SPECIAL - PITA - KEBAB" },
+                  { value: "Pizza", label: "TRADITIONELLA & SPECIAL - PITA - KEBAB" },
                   { value: "Dryck", label: "AV ALLA DE SORTER" },
                   { value: "2018", label: "Året vi öppnade" },
                 ].map((s) => (
