@@ -21,7 +21,7 @@ import gFood7 from "@/assets/scraped/dinner.jpg.asset.json";
 import gFood8 from "@/assets/scraped/food-ig-08.jpg.asset.json";
 import eventLive from "@/assets/scraped/event-live-1.jpg.asset.json";
 import { RAVEN } from "@/lib/locations";
-import { ArrowUpRight, Phone, MapPin, Clock } from "lucide-react";
+import { ArrowUpRight, Phone, MapPin, Clock, Truck } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
