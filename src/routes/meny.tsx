@@ -200,17 +200,17 @@ const chapters: MenuChapter[] = [
         title: "Oxfilépizzor",
         note: "160 kr · Extra allt +30 kr · Familjepizza 360 kr.",
         items: [
-          { name: "Sorprendente", desc: "Ost, oxfilé, aubergine, zucchini, lök, cocktailtomater, kantareller, soltorkade tomater, bearnaisesås." },
-          { name: "Excelente", desc: "Ost, oxfilé, kyckling, räkor, tomat, vitlök, bearnaisesås." },
+          { name: "Sorprendente", desc: "Ost, tomatsås, oxfilé, aubergine, zucchini, lök, cocktailtomater, kantareller, soltorkade tomater, bearnaisesås." },
+          { name: "Excelente", desc: "Ost, tomatsås, oxfilé, kyckling, räkor, tomat, vitlök, bearnaisesås." },
         ],
       },
       {
         title: "Mexikanska pizzor",
         note: "160 kr · Extra allt +30 kr · Familjepizza 360 kr.",
         items: [
-          { name: "Acapulco", desc: "Ost, stark tomatsås, oxfilé, lök, jalapeño, tacosås, vitlök, tacokrydda, cayenne." },
-          { name: "Den onde", desc: "Ost, oxfilé, champinjoner, lök, jalapeño, chipotlesås, cayenne, tacokrydda, bearnaisesås." },
-          { name: "Mexicana", desc: "Ost, köttfärssås, lök, jalapeño, chipotlesås, texmex, stark krydda." },
+          { name: "Acapulco", desc: "Ost, tomatsås, oxfilé, lök, jalapeño, tacosås, vitlök, tacokrydda, cayenne." },
+          { name: "Den onde", desc: "Ost, tomatsås, oxfilé, champinjoner, lök, jalapeño, chipotlesås, cayenne, tacokrydda, bearnaisesås." },
+          { name: "Mexicana", desc: "Ost, tomatsås, köttfärssås, lök, jalapeño, chipotlesås, texmex, stark krydda." },
         ],
       },
       {
