@@ -59,6 +59,16 @@ const chapters: MenuChapter[] = [
         ],
       },
       {
+        title: "Tillbehör & såser",
+        note: "Välj potatis eller sides 29 kr. Såser 20–30 kr.",
+        items: [
+          { name: "Välj potatis", desc: "Pommes frites, kokt potatis, stekt potatis, klyftpotatis, pommes duchesse eller wokade grönsaker.", price: "29 kr" },
+          { name: "Sides", desc: "Coleslaw.", price: "29 kr" },
+          { name: "Kalla såser", desc: "Aioli, bearnaisesås, remouladsås, tzatziki.", price: "20 kr" },
+          { name: "Varma såser", desc: "Grönpepparsås, pepparsås, rödvinssås.", price: "30 kr" },
+        ],
+      },
+      {
         title: "Pasta",
         items: [
           { name: "Bolognese", desc: "Linguini med långkokt köttragu.", price: "189 kr" },
@@ -89,16 +99,6 @@ const chapters: MenuChapter[] = [
           { name: "Banana Split", desc: "Banan, glass, grädde, kolasås, chokladsås och strössel.", price: "120 kr" },
           { name: "Glass, 2 kulor", desc: "Vaniljglass.", price: "120 kr" },
           { name: "Bygg egen tårta", desc: "Sockerkaka, grädde, jordgubbssylt, segelhallon och mandariner.", price: "120 kr" },
-        ],
-      },
-      {
-        title: "Tillbehör & såser",
-        note: "Välj potatis eller sides 29 kr. Såser 20–30 kr.",
-        items: [
-          { name: "Välj potatis", desc: "Pommes frites, kokt potatis, stekt potatis, klyftpotatis, pommes duchesse eller wokade grönsaker.", price: "29 kr" },
-          { name: "Sides", desc: "Coleslaw.", price: "29 kr" },
-          { name: "Kalla såser", desc: "Aioli, bearnaisesås, remouladsås, tzatziki.", price: "20 kr" },
-          { name: "Varma såser", desc: "Grönpepparsås, pepparsås, rödvinssås.", price: "30 kr" },
         ],
       },
     ],
